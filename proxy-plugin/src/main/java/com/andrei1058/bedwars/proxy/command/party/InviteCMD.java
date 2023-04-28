@@ -1,6 +1,6 @@
 package com.andrei1058.bedwars.proxy.command.party;
 
-import com.andrei1058.bedwars.proxy.command.SubCommand;
+import com.andrei1058.bedwars.proxy.api.command.SubCommand;
 import com.andrei1058.bedwars.proxy.api.Messages;
 import com.google.common.collect.ImmutableList;
 import net.md_5.bungee.api.chat.ClickEvent;

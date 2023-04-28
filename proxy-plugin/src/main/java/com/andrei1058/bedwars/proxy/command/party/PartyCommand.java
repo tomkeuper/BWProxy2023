@@ -1,6 +1,6 @@
 package com.andrei1058.bedwars.proxy.command.party;
 
-import com.andrei1058.bedwars.proxy.command.ParentCommand;
+import com.andrei1058.bedwars.proxy.api.command.ParentCommand;
 import com.andrei1058.bedwars.proxy.api.Messages;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
 import org.bukkit.command.CommandSender;
