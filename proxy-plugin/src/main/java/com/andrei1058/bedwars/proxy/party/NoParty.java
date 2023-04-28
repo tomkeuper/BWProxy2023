@@ -1,5 +1,6 @@
 package com.andrei1058.bedwars.proxy.party;
 
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.andrei1058.bedwars.proxy.levels;
+package com.andrei1058.bedwars.proxy.api.level;
 
 import org.bukkit.entity.Player;
 

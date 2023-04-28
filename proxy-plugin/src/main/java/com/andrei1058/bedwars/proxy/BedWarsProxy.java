@@ -1,6 +1,7 @@
 package com.andrei1058.bedwars.proxy;
 
 import com.andrei1058.bedwars.proxy.api.BedWars;
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaManager;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaSelectorListener;
 import com.andrei1058.bedwars.proxy.arenasign.SignManager;
@@ -13,7 +14,7 @@ import com.andrei1058.bedwars.proxy.configuration.SoundsConfig;
 import com.andrei1058.bedwars.proxy.database.*;
 import com.andrei1058.bedwars.proxy.language.LangListeners;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
-import com.andrei1058.bedwars.proxy.levels.Level;
+import com.andrei1058.bedwars.proxy.api.level.Level;
 import com.andrei1058.bedwars.proxy.levels.internal.InternalLevel;
 import com.andrei1058.bedwars.proxy.levels.internal.LevelListeners;
 import com.andrei1058.bedwars.proxy.party.*;
@@ -211,11 +212,33 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     }
 
     @Override
+    public Level getLevelsUtil() {
+        return BedWarsProxy.getLevelManager();
+    }
+
+    @Override
+    public Party getPartyUtil() {
+        return BedWarsProxy.party;
+    }
+
+    @Override
+    public void setPartyAdapter(Party partyAdapter) throws IllegalAccessError {
+        if (partyAdapter == null) return;
+        if (partyAdapter.equals(BedWarsProxy.getParty())) return;
+        BedWarsProxy.setParty(partyAdapter);
+        BedWarsProxy.plugin.getLogger().log(java.util.logging.Level.WARNING,  "One of your plugins changed the Party adapter to: " + partyAdapter.getClass().getName());
+    }
+
+    @Override
     public ArenaUtil getArenaUtil() {
         return ArenaManager.getInstance();
     }
 
     public static BedWars getAPI() {
         return BedWarsProxy.plugin;
+    }
+
+    public static void setParty(Party party) {
+        BedWarsProxy.party = party;
     }
 }

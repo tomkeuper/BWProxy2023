@@ -1,5 +1,6 @@
 package com.andrei1058.bedwars.proxy.party;
 
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayerManager;
 import de.simonsator.partyandfriends.api.party.PlayerParty;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PAF implements Party{ //Party And Friends Support Added by JT122406
+public class PAF implements Party { //Party And Friends Support Added by JT122406
 
     private PlayerParty getPAFParty(UUID p) {
         OnlinePAFPlayer pafPlayer = PAFPlayerManager.getInstance().getPlayer(Bukkit.getPlayer(p));
