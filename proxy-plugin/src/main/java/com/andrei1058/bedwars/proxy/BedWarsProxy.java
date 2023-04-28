@@ -54,6 +54,8 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     private static Party party;
     private static Level levelManager;
 
+    public static boolean isPapi = false;
+
     @Override
     public void onLoad() {
         plugin = this;
@@ -129,6 +131,7 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             getLogger().info("Hook into PlaceholderAPI support!");
             new SupportPAPI().register();
+            isPapi = true;
         }
 
         Metrics m = new Metrics(this, 6036);
