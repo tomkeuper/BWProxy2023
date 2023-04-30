@@ -39,8 +39,8 @@ public class LanguageManager implements BedWars.LanguageUtil {
 
     @Override
     public String getMsg(Player p, String path) {
-        return IridiumColorAPI.process(BedWarsProxy.isPapi ? PlaceholderAPI.setPlaceholders(p, langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path)) :
-                langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path));
+        return BedWarsProxy.isPapi ? PlaceholderAPI.setPlaceholders(p, langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path)) :
+                langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path);
     }
 
     @Override
