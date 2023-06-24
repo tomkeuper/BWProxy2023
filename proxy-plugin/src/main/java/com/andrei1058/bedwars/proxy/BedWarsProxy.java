@@ -34,6 +34,8 @@ import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -230,6 +232,11 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     }
 
     @Override
+    public void setLevelAdapter(Level level) {
+        BedWarsProxy.setLevel(level);
+    }
+
+    @Override
     public ArenaUtil getArenaUtil() {
         return ArenaManager.getInstance();
     }
@@ -240,5 +247,20 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
 
     public static void setParty(Party party) {
         BedWarsProxy.party = party;
+    }
+
+    public static void setLevel(Level level) {
+        if (level instanceof InternalLevel) {
+            if (LevelListeners.instance == null) {
+                Bukkit.getPluginManager().registerEvents(new LevelListeners(), BedWarsProxy.plugin);
+            }
+        } else {
+            if (LevelListeners.instance != null) {
+                PlayerJoinEvent.getHandlerList().unregister(LevelListeners.instance);
+                PlayerQuitEvent.getHandlerList().unregister(LevelListeners.instance);
+                LevelListeners.instance = null;
+            }
+        }
+        levelManager = level;
     }
 }

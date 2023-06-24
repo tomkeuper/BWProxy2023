@@ -21,6 +21,8 @@ public interface BedWars {
      */
     Level getLevelsUtil();
 
+    void setLevelAdapter(Level level);
+
     /**
      * Get party methods.
      */
