@@ -1,5 +1,6 @@
 package com.andrei1058.bedwars.proxy.api;
 
+import com.andrei1058.bedwars.proxy.api.database.Database;
 import com.andrei1058.bedwars.proxy.api.level.Level;
 import com.andrei1058.bedwars.proxy.api.party.Party;
 import org.bukkit.entity.Player;
@@ -33,6 +34,10 @@ public interface BedWars {
      * You man need to unregister /party command yourself.
      */
     void setPartyAdapter(Party partyAdapter);
+
+    Database getDatabaseUtil();
+
+    void setDatabaseAdapter(Database database);
 
     interface LanguageUtil {
         /**

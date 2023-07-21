@@ -1,6 +1,7 @@
 package com.andrei1058.bedwars.proxy;
 
 import com.andrei1058.bedwars.proxy.api.BedWars;
+import com.andrei1058.bedwars.proxy.api.database.Database;
 import com.andrei1058.bedwars.proxy.api.party.Party;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaManager;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaSelectorListener;
@@ -224,6 +225,11 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     }
 
     @Override
+    public Database getDatabaseUtil() {
+        return BedWarsProxy.getRemoteDatabase();
+    }
+
+    @Override
     public void setPartyAdapter(Party partyAdapter) throws IllegalAccessError {
         if (partyAdapter == null) return;
         if (partyAdapter.equals(BedWarsProxy.getParty())) return;
@@ -234,6 +240,11 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     @Override
     public void setLevelAdapter(Level level) {
         BedWarsProxy.setLevel(level);
+    }
+
+    @Override
+    public void setDatabaseAdapter(Database database) {
+        BedWarsProxy.setRemoteDatabase(database);
     }
 
     @Override
@@ -263,4 +274,6 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
         }
         levelManager = level;
     }
+
+
 }

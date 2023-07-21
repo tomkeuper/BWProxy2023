@@ -1,7 +1,7 @@
 package com.andrei1058.bedwars.proxy.database;
 
 import com.andrei1058.bedwars.proxy.BedWarsProxy;
-import com.andrei1058.bedwars.proxy.language.Language;
+import com.andrei1058.bedwars.proxy.api.database.Database;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
 import org.bukkit.Bukkit;
 
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.UUID;
 
 @SuppressWarnings("WeakerAccess")
-public class MySQL implements Database{
+public class MySQL implements Database {
 
     private Connection connection;
     private String host, database, user, pass;
