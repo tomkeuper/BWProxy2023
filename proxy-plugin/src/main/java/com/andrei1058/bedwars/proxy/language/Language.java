@@ -1,6 +1,7 @@
 package com.andrei1058.bedwars.proxy.language;
 
 import com.andrei1058.bedwars.proxy.configuration.PluginConfig;
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -27,7 +28,7 @@ public class Language extends PluginConfig implements com.andrei1058.bedwars.pro
     }
 
     public String getMsg(String path) {
-        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(getYml().getString(path)).replace("{prefix}", prefix));
+        return IridiumColorAPI.process(Objects.requireNonNull(getYml().getString(path)).replace("{prefix}", prefix));
     }
 
     public List<String> getList(String path) {

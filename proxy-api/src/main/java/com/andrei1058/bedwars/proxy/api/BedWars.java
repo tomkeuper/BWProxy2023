@@ -1,5 +1,7 @@
 package com.andrei1058.bedwars.proxy.api;
 
+import com.andrei1058.bedwars.proxy.api.level.Level;
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -13,6 +15,22 @@ public interface BedWars {
      * @return utils.
      */
     LanguageUtil getLanguageUtil();
+
+    /**
+     * Get levels methods.
+     */
+    Level getLevelsUtil();
+
+    /**
+     * Get party methods.
+     */
+    Party getPartyUtil();
+
+    /**
+     * Change the party interface.
+     * You man need to unregister /party command yourself.
+     */
+    void setPartyAdapter(Party partyAdapter);
 
     interface LanguageUtil {
         /**

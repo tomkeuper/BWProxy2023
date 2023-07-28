@@ -1,8 +1,7 @@
 package com.andrei1058.bedwars.proxy.command.main;
 
 import com.andrei1058.bedwars.proxy.BedWarsProxy;
-import com.andrei1058.bedwars.proxy.command.SubCommand;
-import com.andrei1058.bedwars.proxy.language.Language;
+import com.andrei1058.bedwars.proxy.api.command.SubCommand;
 import com.andrei1058.bedwars.proxy.api.Messages;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
 import org.bukkit.Bukkit;

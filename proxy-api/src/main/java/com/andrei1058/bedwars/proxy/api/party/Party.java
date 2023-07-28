@@ -1,4 +1,4 @@
-package com.andrei1058.bedwars.proxy.party;
+package com.andrei1058.bedwars.proxy.api.party;
 
 import org.bukkit.entity.Player;
 

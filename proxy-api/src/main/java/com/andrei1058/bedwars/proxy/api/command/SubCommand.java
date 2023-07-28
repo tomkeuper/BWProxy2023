@@ -1,4 +1,4 @@
-package com.andrei1058.bedwars.proxy.command;
+package com.andrei1058.bedwars.proxy.api.command;
 
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;

@@ -3,7 +3,7 @@ package com.andrei1058.bedwars.proxy.command.main;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaManager;
 import com.andrei1058.bedwars.proxy.api.ArenaStatus;
 import com.andrei1058.bedwars.proxy.api.CachedArena;
-import com.andrei1058.bedwars.proxy.command.SubCommand;
+import com.andrei1058.bedwars.proxy.api.command.SubCommand;
 import com.andrei1058.bedwars.proxy.api.Messages;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -11,7 +11,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static com.andrei1058.bedwars.proxy.BedWarsProxy.getParty;

@@ -1,8 +1,11 @@
 package com.andrei1058.bedwars.proxy.language;
 
+import com.andrei1058.bedwars.proxy.BedWarsProxy;
 import com.andrei1058.bedwars.proxy.api.BedWars;
 import com.andrei1058.bedwars.proxy.api.Language;
 import com.andrei1058.bedwars.proxy.api.event.PlayerLangChangeEvent;
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -36,7 +39,8 @@ public class LanguageManager implements BedWars.LanguageUtil {
 
     @Override
     public String getMsg(Player p, String path) {
-        return langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path);
+        return BedWarsProxy.isPapi ? PlaceholderAPI.setPlaceholders(p, langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path)) :
+                langByPlayer.getOrDefault(p, getDefaultLanguage()).getMsg(path);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.andrei1058.bedwars.proxy.party;
 
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
 import de.simonsator.partyandfriends.spigot.api.party.PartyManager;

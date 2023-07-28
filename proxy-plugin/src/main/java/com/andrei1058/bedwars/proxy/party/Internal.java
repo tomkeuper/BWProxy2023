@@ -1,6 +1,7 @@
 package com.andrei1058.bedwars.proxy.party;
 
 import com.andrei1058.bedwars.proxy.api.Messages;
+import com.andrei1058.bedwars.proxy.api.party.Party;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

@@ -1,7 +1,7 @@
 package com.andrei1058.bedwars.proxy.command.main;
 
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaGUI;
-import com.andrei1058.bedwars.proxy.command.SubCommand;
+import com.andrei1058.bedwars.proxy.api.command.SubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;

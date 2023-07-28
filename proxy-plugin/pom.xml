@@ -37,6 +37,10 @@
             <id>andrei1058-repo2</id>
             <url>https://repo.andrei1058.dev/snapshots/</url>
         </repository>
+        <repository>
+            <id>iridiumdevelopment</id>
+            <url>https://nexus.iridiumdevelopment.net/repository/maven-releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -166,6 +170,11 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.iridium</groupId>
+            <artifactId>IridiumColorAPI</artifactId>
+            <version>1.0.6</version>
+        </dependency>
     </dependencies>
     <pluginRepositories>
         <pluginRepository>
@@ -213,6 +222,10 @@
                         <relocation>
                             <pattern>com.andrei1058.spigot.versionsupport</pattern>
                             <shadedPattern>com.andrei1058.bedwars.proxy.libs</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.iridium.iridiumcolorapi</pattern>
+                            <shadedPattern>com.andrei1058.bedwars.proxy.libs.color</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
