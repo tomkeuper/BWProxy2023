@@ -2,7 +2,6 @@ package com.andrei1058.bedwars.proxy;
 
 import com.andrei1058.bedwars.proxy.api.BedWars;
 import com.andrei1058.bedwars.proxy.api.party.Party;
-import com.andrei1058.bedwars.proxy.arenamanager.ArenaManager;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaSelectorListener;
 import com.andrei1058.bedwars.proxy.arenasign.SignManager;
 import com.andrei1058.bedwars.proxy.command.RejoinCommand;
@@ -35,14 +34,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
 
-public class BedWarsProxy extends JavaPlugin implements BedWars {
+public class BedWarsProxy extends JavaPlugin {
 
     private static BedWarsProxy plugin;
+    private static BedWars api;
     public static BedWarsConfig config;
     private static Database remoteDatabase = null;
     private static StatsCache statsCache;
@@ -60,6 +61,8 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     @Override
     public void onLoad() {
         plugin = this;
+        api = new API();
+        Bukkit.getServicesManager().register(BedWars.class, api, this, ServicePriority.Highest);
         // Setup languages
     }
 
@@ -206,36 +209,8 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
         BedWarsProxy.remoteDatabase = remoteDatabase;
     }
 
-    @Override
-    public LanguageUtil getLanguageUtil() {
-        return LanguageManager.get();
-    }
-
-    @Override
-    public Level getLevelsUtil() {
-        return BedWarsProxy.getLevelManager();
-    }
-
-    @Override
-    public Party getPartyUtil() {
-        return BedWarsProxy.party;
-    }
-
-    @Override
-    public void setPartyAdapter(Party partyAdapter) throws IllegalAccessError {
-        if (partyAdapter == null) return;
-        if (partyAdapter.equals(BedWarsProxy.getParty())) return;
-        BedWarsProxy.setParty(partyAdapter);
-        BedWarsProxy.plugin.getLogger().log(java.util.logging.Level.WARNING,  "One of your plugins changed the Party adapter to: " + partyAdapter.getClass().getName());
-    }
-
-    @Override
-    public ArenaUtil getArenaUtil() {
-        return ArenaManager.getInstance();
-    }
-
     public static BedWars getAPI() {
-        return BedWarsProxy.plugin;
+        return api;
     }
 
     public static void setParty(Party party) {
