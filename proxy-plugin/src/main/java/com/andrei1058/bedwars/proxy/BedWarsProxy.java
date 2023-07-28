@@ -1,6 +1,7 @@
 package com.andrei1058.bedwars.proxy;
 
 import com.andrei1058.bedwars.proxy.api.BedWars;
+import com.andrei1058.bedwars.proxy.api.database.Database;
 import com.andrei1058.bedwars.proxy.api.party.Party;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaManager;
 import com.andrei1058.bedwars.proxy.arenamanager.ArenaSelectorListener;
@@ -34,6 +35,8 @@ import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -222,11 +225,26 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     }
 
     @Override
+    public Database getDatabaseUtil() {
+        return BedWarsProxy.getRemoteDatabase();
+    }
+
+    @Override
     public void setPartyAdapter(Party partyAdapter) throws IllegalAccessError {
         if (partyAdapter == null) return;
         if (partyAdapter.equals(BedWarsProxy.getParty())) return;
         BedWarsProxy.setParty(partyAdapter);
         BedWarsProxy.plugin.getLogger().log(java.util.logging.Level.WARNING,  "One of your plugins changed the Party adapter to: " + partyAdapter.getClass().getName());
+    }
+
+    @Override
+    public void setLevelAdapter(Level level) {
+        BedWarsProxy.setLevel(level);
+    }
+
+    @Override
+    public void setDatabaseAdapter(Database database) {
+        BedWarsProxy.setRemoteDatabase(database);
     }
 
     @Override
@@ -241,4 +259,21 @@ public class BedWarsProxy extends JavaPlugin implements BedWars {
     public static void setParty(Party party) {
         BedWarsProxy.party = party;
     }
+
+    public static void setLevel(Level level) {
+        if (level instanceof InternalLevel) {
+            if (LevelListeners.instance == null) {
+                Bukkit.getPluginManager().registerEvents(new LevelListeners(), BedWarsProxy.plugin);
+            }
+        } else {
+            if (LevelListeners.instance != null) {
+                PlayerJoinEvent.getHandlerList().unregister(LevelListeners.instance);
+                PlayerQuitEvent.getHandlerList().unregister(LevelListeners.instance);
+                LevelListeners.instance = null;
+            }
+        }
+        levelManager = level;
+    }
+
+
 }

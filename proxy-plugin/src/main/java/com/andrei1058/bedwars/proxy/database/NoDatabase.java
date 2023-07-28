@@ -1,5 +1,7 @@
 package com.andrei1058.bedwars.proxy.database;
 
+import com.andrei1058.bedwars.proxy.api.database.Database;
+
 import java.util.UUID;
 
 public class NoDatabase implements Database {
