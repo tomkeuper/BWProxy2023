@@ -44,8 +44,4 @@ public class API implements BedWars {
         BedWarsProxy.setParty(partyAdapter);
         BedWarsProxy.getPlugin().getLogger().log(java.util.logging.Level.WARNING,  "One of your plugins changed the Party adapter to: " + partyAdapter.getClass().getName());
     }
-
-
-
-
 }
