@@ -30,6 +30,10 @@
             <url>https://repo.alessiodp.com/releases/</url>
         </repository>
         <repository>
+            <id>bedwars2023-releases</id>
+            <url>https://repo.tomkeuper.com/repository/releases/</url>
+        </repository>
+        <repository>
             <id>andrei1058-repo</id>
             <url>https://repo.andrei1058.dev/releases</url>
         </repository>
@@ -75,9 +79,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.andrei1058.spigot.versionsupport</groupId>
+            <groupId>com.tomkeuper.spigot.versionsupport</groupId>
             <artifactId>itemstack-version</artifactId>
-            <version>1.6.3</version>
+            <version>1.6.4</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -87,9 +91,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.andrei1058.spigot.versionsupport</groupId>
+            <groupId>com.tomkeuper.spigot.versionsupport</groupId>
             <artifactId>sounds-version</artifactId>
-            <version>1.6.3</version>
+            <version>1.6.4</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -99,9 +103,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.andrei1058.spigot.versionsupport</groupId>
+            <groupId>com.tomkeuper.spigot.versionsupport</groupId>
             <artifactId>material-version</artifactId>
-            <version>1.6.3</version>
+            <version>1.6.4</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -111,9 +115,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.andrei1058.spigot.versionsupport</groupId>
+            <groupId>com.tomkeuper.spigot.versionsupport</groupId>
             <artifactId>block-version</artifactId>
-            <version>1.6.3</version>
+            <version>1.6.4</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -220,8 +224,8 @@
                             <shadedPattern>com.andrei1058.bedwars.proxy.libs</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>com.andrei1058.spigot.versionsupport</pattern>
-                            <shadedPattern>com.andrei1058.bedwars.proxy.libs</shadedPattern>
+                            <pattern>com.tomkeuper.spigot.versionsupport</pattern>
+                            <shadedPattern>com.andrei1058.bedwars.proxy.libs.version-support</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.iridium.iridiumcolorapi</pattern>
