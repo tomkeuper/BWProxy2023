@@ -37,7 +37,7 @@ public class Internal implements Party {
     public boolean isOwner(UUID p) {
         for (InternalParty party : parties) {
             if (party.members.contains(p)) {
-                if (party.owner == p) return true;
+                if (party.owner.equals(p)) return true;
             }
         }
         return false;
