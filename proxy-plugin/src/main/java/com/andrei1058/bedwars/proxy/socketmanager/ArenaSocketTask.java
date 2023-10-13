@@ -144,6 +144,22 @@ public class ArenaSocketTask implements Runnable {
                             if (ar != null) tr.setArena(ar);
                         }
                         break;
+                    case "PD":
+                        // Party Disband
+                        if (!json.has("owner")) break;
+                        if (BedWarsProxy.getParty().isInternal()) {
+                            Bukkit.getLogger().info("Disbanding party with owner: " + json.get("owner").getAsString());
+                            BedWarsProxy.getParty().disband(UUID.fromString(json.get("owner").getAsString()));
+                        }
+                        break;
+                    case "PR":
+                        // Party Remove (player)
+                        if (!json.has("owner")) break;
+                        if (BedWarsProxy.getParty().isInternal()){
+                            Bukkit.getLogger().info("Removing " +json.get("owner").getAsString() + " from party");
+                            BedWarsProxy.getParty().removeFromParty(UUID.fromString(json.get("owner").getAsString()));
+                        }
+                        break;
                 }
             } else {
                 try {
