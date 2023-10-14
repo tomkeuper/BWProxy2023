@@ -19,24 +19,39 @@ public interface BedWars {
 
     /**
      * Get levels methods.
+     * @return utils
      */
     Level getLevelsUtil();
 
+    /**
+     * Change the level interface.
+     * @param level custom level class
+     */
     void setLevelAdapter(Level level);
 
     /**
      * Get party methods.
+     * @return utils
      */
     Party getPartyUtil();
 
     /**
      * Change the party interface.
      * You man need to unregister /party command yourself.
+     * @param partyAdapter custom party class
      */
     void setPartyAdapter(Party partyAdapter);
 
+    /**
+     * Get database methods.
+     * @return utils
+     */
     Database getRemoteDatabase();
 
+    /**
+     * Change the database interface.
+     * @param database custom database class
+     */
     void setRemoteDatabase(Database database);
 
     interface LanguageUtil {
