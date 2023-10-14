@@ -52,12 +52,12 @@ public class API implements BedWars {
     }
 
     @Override
-    public Database getDatabaseUtil() {
+    public Database getRemoteDatabase() {
         return BedWarsProxy.getRemoteDatabase();
     }
 
     @Override
-    public void setDatabaseAdapter(Database database) {
+    public void setRemoteDatabase(Database database) {
         BedWarsProxy.setRemoteDatabase(database);
     }
 }

@@ -35,9 +35,9 @@ public interface BedWars {
      */
     void setPartyAdapter(Party partyAdapter);
 
-    Database getDatabaseUtil();
+    Database getRemoteDatabase();
 
-    void setDatabaseAdapter(Database database);
+    void setRemoteDatabase(Database database);
 
     interface LanguageUtil {
         /**
