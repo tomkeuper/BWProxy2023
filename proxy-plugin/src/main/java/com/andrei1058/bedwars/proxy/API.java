@@ -28,21 +28,38 @@ public class API implements BedWars {
         return ArenaManager.getInstance();
     }
 
+    /**
+     * Get levels methods.
+     * @return utils
+     */
     @Override
     public Level getLevelsUtil() {
         return BedWarsProxy.getLevelManager();
     }
 
+    /**
+     * Change the level interface.
+     * @param level custom level class
+     */
     @Override
     public void setLevelAdapter(Level level) {
         BedWarsProxy.setLevel(level);
     }
 
+    /**
+     * Get party methods.
+     * @return utils
+     */
     @Override
     public Party getPartyUtil() {
         return BedWarsProxy.getParty();
     }
 
+    /**
+     * Change the party interface.
+     * You man need to unregister /party command yourself.
+     * @param partyAdapter custom party class
+     */
     @Override
     public void setPartyAdapter(Party partyAdapter) throws IllegalAccessError {
         if (partyAdapter == null) return;
@@ -51,13 +68,21 @@ public class API implements BedWars {
         BedWarsProxy.getPlugin().getLogger().log(java.util.logging.Level.WARNING,  "One of your plugins changed the Party adapter to: " + partyAdapter.getClass().getName());
     }
 
+    /**
+     * Get database methods.
+     * @return utils
+     */
     @Override
-    public Database getDatabaseUtil() {
+    public Database getRemoteDatabase() {
         return BedWarsProxy.getRemoteDatabase();
     }
 
+    /**
+     * Change the database interface.
+     * @param database custom database class
+     */
     @Override
-    public void setDatabaseAdapter(Database database) {
+    public void setRemoteDatabase(Database database) {
         BedWarsProxy.setRemoteDatabase(database);
     }
 }
