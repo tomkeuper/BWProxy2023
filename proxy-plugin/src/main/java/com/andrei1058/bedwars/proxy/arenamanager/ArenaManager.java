@@ -5,12 +5,11 @@ import com.andrei1058.bedwars.proxy.api.event.ArenaCacheRemoveEvent;
 import com.andrei1058.bedwars.proxy.BedWarsProxy;
 import com.andrei1058.bedwars.proxy.configuration.ConfigPath;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
-import com.andrei1058.bedwars.proxy.socketmanager.ArenaSocketTask;
+import com.andrei1058.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.andrei1058.bedwars.proxy.socketmanager;
+package com.andrei1058.bedwars.proxy.connectionmanager.socket;
 
 import org.bukkit.Bukkit;
 

@@ -1,7 +1,7 @@
 package com.andrei1058.bedwars.proxy.arenamanager;
 
 import com.andrei1058.bedwars.proxy.api.CachedArena;
-import com.andrei1058.bedwars.proxy.socketmanager.ArenaSocketTask;
+import com.andrei1058.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import com.google.gson.JsonObject;
 
 import java.util.LinkedList;

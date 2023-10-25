@@ -1,4 +1,4 @@
-package com.andrei1058.bedwars.proxy.socketmanager;
+package com.andrei1058.bedwars.proxy.connectionmanager.socket;
 
 import com.andrei1058.bedwars.proxy.api.ArenaStatus;
 import com.andrei1058.bedwars.proxy.api.CachedArena;
@@ -12,7 +12,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
