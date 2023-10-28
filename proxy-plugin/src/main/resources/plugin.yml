@@ -1,8 +1,8 @@
 name: BedWarsProxy
 version: ${gitVer}${project.version}
-description: Arena connecter for BedWars1058
+description: Arena connector for BedWars2023 forked from andrei1058
 main: com.andrei1058.bedwars.proxy.BedWarsProxy
-author: andrei1058
+author: Mr. Ceasar
 api-version: '1.13'
 softdepend:
   - Parties

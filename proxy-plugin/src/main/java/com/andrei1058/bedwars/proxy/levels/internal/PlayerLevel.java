@@ -40,7 +40,6 @@ public class PlayerLevel {
     /**
      * Update the player progress bar.
      */
-    @SuppressWarnings("ConstantConditions")
     private void updateProgressBar() {
         double l1 = ((nextLevelCost - currentXp) / (double) (nextLevelCost)) * 10;
         int locked = (int) l1;

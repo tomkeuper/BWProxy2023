@@ -2,7 +2,6 @@ package com.andrei1058.bedwars.proxy.connectionmanager.redis;
 
 import com.andrei1058.bedwars.proxy.BedWarsProxy;
 import com.andrei1058.bedwars.proxy.configuration.ConfigPath;
-import org.bukkit.Bukkit;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

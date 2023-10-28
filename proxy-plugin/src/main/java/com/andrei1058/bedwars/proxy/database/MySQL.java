@@ -172,9 +172,9 @@ public class MySQL implements Database {
             } else {
                 PreparedStatement ps;
                 if (displayName == null) {
-                    ps = connection.prepareStatement("UPDATE player_levels SET level=?, xp=? WHERE uuid = '" + player.toString() + "';");
+                    ps = connection.prepareStatement("UPDATE player_levels SET level=?, xp=? WHERE uuid = '" + player + "';");
                 } else {
-                    ps = connection.prepareStatement("UPDATE player_levels SET level=?, xp=?, name=?, next_cost=? WHERE uuid = '" + player.toString() + "';");
+                    ps = connection.prepareStatement("UPDATE player_levels SET level=?, xp=?, name=?, next_cost=? WHERE uuid = '" + player + "';");
                 }
                 ps.setInt(1, level);
                 ps.setInt(2, xp);
@@ -195,9 +195,9 @@ public class MySQL implements Database {
         try (ResultSet rs = connection.createStatement().executeQuery("SELECT iso FROM player_language WHERE uuid = '" + player.toString() + "';")) {
             Statement s = connection.createStatement();
             if (rs.next()) {
-                s.executeUpdate("UPDATE player_language SET iso='" + iso + "' WHERE uuid = '" + player.toString() + "';");
+                s.executeUpdate("UPDATE player_language SET iso='" + iso + "' WHERE uuid = '" + player + "';");
             } else {
-                s.executeUpdate("INSERT INTO player_language VALUES (0, '" + player.toString() + "', '" + iso + "');");
+                s.executeUpdate("INSERT INTO player_language VALUES (0, '" + player + "', '" + iso + "');");
             }
             s.close();
         } catch (SQLException e) {

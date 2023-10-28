@@ -63,7 +63,7 @@ public class InviteCMD extends SubCommand {
         } else {
             String lastWord = args[args.length - 1];
             Player senderPlayer = s instanceof Player ? (Player)s : null;
-            ArrayList<String> matchedPlayers = new ArrayList();
+            ArrayList<String> matchedPlayers = new ArrayList<>();
             Iterator var8 = s.getServer().getOnlinePlayers().iterator();
 
             while(true) {
@@ -71,7 +71,7 @@ public class InviteCMD extends SubCommand {
                 String name;
                 do {
                     if (!var8.hasNext()) {
-                        Collections.sort(matchedPlayers, String.CASE_INSENSITIVE_ORDER);
+                        matchedPlayers.sort(String.CASE_INSENSITIVE_ORDER);
                         return matchedPlayers;
                     }
 

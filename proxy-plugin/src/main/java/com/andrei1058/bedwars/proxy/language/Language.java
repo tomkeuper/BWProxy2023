@@ -32,7 +32,7 @@ public class Language extends PluginConfig implements com.andrei1058.bedwars.pro
     }
 
     public List<String> getList(String path) {
-        return getYml().getStringList(path).stream().map(s -> s = ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+        return getYml().getStringList(path).stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
     }
 
     public void setPrefix(String prefix) {

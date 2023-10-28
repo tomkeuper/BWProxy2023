@@ -45,10 +45,6 @@ public class BedWarsConfig extends PluginConfig {
         yml.addDefault("levels-settings.progress-bar-format", "&8 [{progress}&8]");
         yml.addDefault(ConfigPath.GENERAL_ENABLE_PARTY_CMD, true);
 
-        //saveLobbyCommandItem("stats", "bw stats", false, String.valueOf(BedWarsProxy.getMaterialAdapter().getForCurrent("SKULL_ITEM", "SKULL_ITEM", "PLAYER_HEAD")), 3, 0);
-        //saveLobbyCommandItem("arena-selector", "bw gui", true, "CHEST", 5, 4);
-        //saveLobbyCommandItem("leave", "bw leave", false, String.valueOf(BedWarsProxy.getMaterialAdapter().getForCurrent("BED", "BED", "RED_BED")), 0, 8);
-
         yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_DISABLED_LANGUAGES, Collections.singletonList("your language iso here"));
 
         yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_SETTINGS_SIZE, 45);
@@ -103,28 +99,4 @@ public class BedWarsConfig extends PluginConfig {
         }
         //
     }
-
-    /*
-     * Add Lobby Command Item To
-     * This won't create the item back if you delete it.
-     */
-    /*public void saveLobbyCommandItem(String name, String cmd, boolean enchanted, String material, int data, int slot) {
-        if (isFirstTime()) {
-            getYml().addDefault(ConfigPath.GENERAL_CONFIGURATION_LOBBY_ITEMS_COMMAND.replace("%path%", name), cmd);
-            getYml().addDefault(ConfigPath.GENERAL_CONFIGURATION_LOBBY_ITEMS_MATERIAL.replace("%path%", name), material);
-            getYml().addDefault(ConfigPath.GENERAL_CONFIGURATION_LOBBY_ITEMS_DATA.replace("%path%", name), data);
-            getYml().addDefault(ConfigPath.GENERAL_CONFIGURATION_LOBBY_ITEMS_ENCHANTED.replace("%path%", name), enchanted);
-            getYml().addDefault(ConfigPath.GENERAL_CONFIGURATION_LOBBY_ITEMS_SLOT.replace("%path%", name), slot);
-            getYml().options().copyDefaults(true);
-            save();
-        }
-    }*/
-
-    /*public String getLobbyWorldName() {
-        if (getYml().get("lobbyLoc") == null) return "";
-        String d = getYml().getString("lobbyLoc");
-        if (d == null) return "";
-        String[] data = d.replace("[", "").replace("]", "").split(",");
-        return data[data.length - 1];
-    }*/
 }

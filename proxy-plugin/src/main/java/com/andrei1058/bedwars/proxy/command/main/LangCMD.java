@@ -43,7 +43,6 @@ public class LangCMD extends SubCommand {
                 p.sendMessage(getMsg(p, Messages.COMMAND_LANG_LIST_FORMAT).replace("{iso}", l.getIso()).replace("{name}", l.getLangName()));
             }
             p.sendMessage(getMsg(p, Messages.COMMAND_LANG_USAGE));
-            return;
         } else if (LanguageManager.get().isLanguageExist(args[0])) {
             LanguageManager.get().setPlayerLanguage(p, args[0], false);
             Bukkit.getScheduler().runTaskLater(BedWarsProxy.getPlugin(), () -> p.sendMessage(getMsg(p, Messages.COMMAND_LANG_SELECTED_SUCCESSFULLY)), 10L);

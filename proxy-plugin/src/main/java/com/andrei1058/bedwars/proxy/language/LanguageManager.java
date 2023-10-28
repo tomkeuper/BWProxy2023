@@ -4,7 +4,6 @@ import com.andrei1058.bedwars.proxy.BedWarsProxy;
 import com.andrei1058.bedwars.proxy.api.BedWars;
 import com.andrei1058.bedwars.proxy.api.Language;
 import com.andrei1058.bedwars.proxy.api.event.PlayerLangChangeEvent;
-import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

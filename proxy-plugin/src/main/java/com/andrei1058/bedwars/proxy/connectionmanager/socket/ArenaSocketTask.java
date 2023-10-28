@@ -34,7 +34,7 @@ public class ArenaSocketTask implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(socket.toString());
+        System.out.println(socket);
     }
 
     @Override
@@ -103,9 +103,7 @@ public class ArenaSocketTask implements Runnable {
                                 ca.setStatus(ArenaStatus.valueOf(json.get("arena_status").getAsString()));
                                 modified = true;
                             }
-                            /*ca.setArenaGroup(json.get("arena_group").getAsString());
-                            ca.setArenaName(json.get("arena_name").getAsString());
-                            ca.setMaxInTeam(json.get("arena_max_in_team").getAsInt());*/
+
                             if (modified) {
                                 CachedArena finalCa = ca;
                                 Bukkit.getScheduler().runTask(BedWarsProxy.getPlugin(), () -> {
