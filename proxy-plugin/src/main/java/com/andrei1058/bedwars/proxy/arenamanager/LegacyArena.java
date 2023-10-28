@@ -166,12 +166,15 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean addSpectator(Player player, String targetPlayer) {
-        ArenaSocketTask as = ArenaManager.getSocketByServer(getServer());
-        if (as == null) {
-            this.setStatus(ArenaStatus.UNKNOWN);
-            ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-            Bukkit.getPluginManager().callEvent(e);
-            return false;
+        ArenaSocketTask as = null;
+        if (BedWarsProxy.getRedisConnection() == null){
+            as = ArenaManager.getSocketByServer(getServer());
+            if (as == null) {
+                this.setStatus(ArenaStatus.UNKNOWN);
+                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
+                Bukkit.getPluginManager().callEvent(e);
+                return false;
+            }
         }
 
         if (getParty().hasParty(player.getUniqueId())) {
@@ -192,7 +195,7 @@ public class LegacyArena implements CachedArena {
             return false;
         }
 
-        //pld,worldIdentifier,uuidUser,languageIso,targetPlayer
+        //preLoadData,uuidUser,languageIso,targetPlayer,arenaWorldIdentifier
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", "PLD");
         map.put("uuid", player.getUniqueId().toString());
@@ -200,7 +203,15 @@ public class LegacyArena implements CachedArena {
         map.put("target", targetPlayer == null ? "" : targetPlayer);
         map.put("arena_identifier", getRemoteIdentifier());
         JSONObject json = new JSONObject(map);
-        as.getOut().println(json.toJSONString());
+        BedWarsProxy.getRedisConnection().sendMessage(json.toString());
+        if (BedWarsProxy.getRedisConnection() == null){
+            assert as != null;
+            as.getOut().println(json.toJSONString());
+        } else {
+            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
+        }
+
+
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Connect");
         out.writeUTF(getServer());
@@ -210,13 +221,15 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean addPlayer(Player player, String partyOwnerName) {
-        ArenaSocketTask as = ArenaManager.getSocketByServer(getServer());
-
-        if (as == null) {
-            this.setStatus(ArenaStatus.UNKNOWN);
-            ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-            Bukkit.getPluginManager().callEvent(e);
-            return false;
+        ArenaSocketTask as = null;
+        if (BedWarsProxy.getRedisConnection() == null){
+            as = ArenaManager.getSocketByServer(getServer());
+            if (as == null) {
+                this.setStatus(ArenaStatus.UNKNOWN);
+                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
+                Bukkit.getPluginManager().callEvent(e);
+                return false;
+            }
         }
 
         if (getParty().hasParty(player.getUniqueId()) && !getParty().isOwner(player.getUniqueId()) && partyOwnerName == null) {
@@ -260,15 +273,21 @@ public class LegacyArena implements CachedArena {
             getParty().disband(player.getUniqueId());
         }
 
-        //pld,worldIdentifier,uuidUser,languageIso,partyOwner
-
+        //preLoadData,uuidUser,languageIso,targetPlayer,arenaWorldIdentifier
         JsonObject json = new JsonObject();
         json.addProperty("type", "PLD");
         json.addProperty("uuid", player.getUniqueId().toString());
         json.addProperty("lang_iso", LanguageManager.get().getPlayerLanguage(player).getIso());
         json.addProperty("target", partyOwnerName == null ? "" : partyOwnerName);
         json.addProperty("arena_identifier", getRemoteIdentifier());
-        as.getOut().println(json.toString());
+
+        if (BedWarsProxy.getRedisConnection() == null){
+            assert as != null;
+            as.getOut().println(json);
+        } else {
+            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
+        }
+
         //noinspection UnstableApiUsage
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Connect");
@@ -279,13 +298,16 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean reJoin(RemoteReJoin rj) {
-        ArenaSocketTask as = ArenaManager.getSocketByServer(getServer());
-        if (as == null) {
-            this.setStatus(ArenaStatus.UNKNOWN);
-            ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-            Bukkit.getPluginManager().callEvent(e);
-            rj.destroy();
-            return false;
+        ArenaSocketTask as = null;
+        if (BedWarsProxy.getRedisConnection() == null){
+            as = ArenaManager.getSocketByServer(getServer());
+            if (as == null) {
+                this.setStatus(ArenaStatus.UNKNOWN);
+                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
+                Bukkit.getPluginManager().callEvent(e);
+                rj.destroy();
+                return false;
+            }
         }
 
         Player player = Bukkit.getPlayer(rj.getUUID());
@@ -300,13 +322,20 @@ public class LegacyArena implements CachedArena {
         }
 
         Bukkit.getPluginManager().callEvent(new PlayerReJoinEvent(player, rj.getArena()));
+
+        //preLoadData,uuidUser,languageIso,targetPlayer,arenaWorldIdentifier
         JsonObject json = new JsonObject();
         json.addProperty("type", "PLD");
         json.addProperty("uuid", player.getUniqueId().toString());
         json.addProperty("lang_iso", BedWarsProxy.getAPI().getLanguageUtil().getPlayerLanguage(player).getIso());
         json.addProperty("target", "");
         json.addProperty("arena_identifier", getRemoteIdentifier());
-        as.getOut().println(json.toString());
+        if (BedWarsProxy.getRedisConnection() == null){
+            assert as != null;
+            as.getOut().println(json);
+        } else {
+            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
+        }
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Connect");
         out.writeUTF(getServer());

@@ -65,6 +65,12 @@
             <artifactId>Spigot-Party-API-For-RedisBungee</artifactId>
             <version>1.0.3-SNAPSHOT</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>redis.clients</groupId>
+                    <artifactId>jedis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.alessiodp.parties</groupId>
@@ -178,6 +184,11 @@
             <groupId>com.iridium</groupId>
             <artifactId>IridiumColorAPI</artifactId>
             <version>1.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>5.0.2</version>
         </dependency>
     </dependencies>
     <pluginRepositories>

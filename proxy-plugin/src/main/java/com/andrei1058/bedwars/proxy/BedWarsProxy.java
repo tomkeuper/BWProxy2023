@@ -11,6 +11,8 @@ import com.andrei1058.bedwars.proxy.command.party.PartyCommand;
 import com.andrei1058.bedwars.proxy.configuration.BedWarsConfig;
 import com.andrei1058.bedwars.proxy.configuration.ConfigPath;
 import com.andrei1058.bedwars.proxy.configuration.SoundsConfig;
+import com.andrei1058.bedwars.proxy.connectionmanager.redis.RedisConnection;
+import com.andrei1058.bedwars.proxy.connectionmanager.redis.RetrieveArenaTask;
 import com.andrei1058.bedwars.proxy.database.*;
 import com.andrei1058.bedwars.proxy.language.LangListeners;
 import com.andrei1058.bedwars.proxy.language.LanguageManager;
@@ -49,6 +51,8 @@ public class BedWarsProxy extends JavaPlugin {
     private static BedWars api;
     public static BedWarsConfig config;
     private static Database remoteDatabase = null;
+
+    private static RedisConnection redisConnection;
     private static StatsCache statsCache;
 
     private static SoundSupport soundAdapter;
@@ -85,20 +89,32 @@ public class BedWarsProxy extends JavaPlugin {
         }
         statsCache = new StatsCache();
 
-        if (!ServerSocketTask.init(config.getInt(ConfigPath.GENERAL_CONFIGURATION_PORT))) {
-            getLogger().severe("Could not register port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_PORT));
-            getLogger().severe("Please change it in config! Port already in use!");
-        }
+        String messagingProtocol = config.getString(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_MESSAGING_PROTOCOL);
 
-        getLogger().info("Listening for BedWars1058 arenas on port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_PORT));
+        if (messagingProtocol.equalsIgnoreCase("redis")){
+            getLogger().info("Starting Redis connection...");
+            redisConnection = new RedisConnection();
+            new RetrieveArenaTask(redisConnection);
+
+
+        } else if (messagingProtocol.equalsIgnoreCase("socket")){
+            if (!ServerSocketTask.init(config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT))) {
+                getLogger().severe("Could not register port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT));
+                getLogger().severe("Please change it in config! Port already in use!");
+            }
+
+            getLogger().info("Listening for BedWars2023 arenas on port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT));
+
+            Bukkit.getScheduler().runTaskTimer(this, new TimeOutTask(), 20L, 10L);
+        } else {
+            throw new IllegalStateException("Invalid messaging protocol provided `" + messagingProtocol + "`, possible options are `redis` or `socket`!");
+        }
 
         registerListeners(new LangListeners(), new ArenaSelectorListener(), new CacheListener());
         //noinspection InstantiationOfUtilityClass
         new SoundsConfig();
 
         Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-
-        Bukkit.getScheduler().runTaskTimer(this, new TimeOutTask(), 20L, 10L);
 
         //Party support
         if (config.getYml().getBoolean(ConfigPath.GENERAL_CONFIGURATION_ALLOW_PARTIES)) {
@@ -160,6 +176,10 @@ public class BedWarsProxy extends JavaPlugin {
 
     public static Database getRemoteDatabase() {
         return remoteDatabase;
+    }
+
+    public static RedisConnection getRedisConnection() {
+        return redisConnection;
     }
 
     public static StatsCache getStatsCache() {
@@ -234,6 +254,4 @@ public class BedWarsProxy extends JavaPlugin {
         }
         levelManager = level;
     }
-
-
 }

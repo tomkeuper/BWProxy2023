@@ -15,7 +15,6 @@ public class BedWarsConfig extends PluginConfig {
         super(BedWarsProxy.getPlugin(), "config", BedWarsProxy.getPlugin().getDataFolder().getPath());
 
         YamlConfiguration yml = getYml();
-        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_PORT, 2019);
         yml.addDefault("language", "en");
         yml.addDefault(ConfigPath.GENERAL_CONFIG_PLACEHOLDERS_REPLACEMENTS_SERVER_IP, "yourServer.com");
         yml.addDefault("storeLink", "https://www.spigotmc.org/resources/authors/39904/");
@@ -28,6 +27,14 @@ public class BedWarsConfig extends PluginConfig {
         yml.addDefault("database.pass", "");
         yml.addDefault("database.port", 3306);
         yml.addDefault("database.ssl", false);
+
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_MESSAGING_PROTOCOL, "socket");
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT, 2023);
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_HOST, "localhost");
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PORT, 6379);
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PASSWORD, "StrongRedisPassword1");
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_CHANNEL, "bw2023");
+
         yml.options().copyDefaults(true);
 
         yml.addDefault("levels-settings.default-name", "&7[{number}✩] ");
