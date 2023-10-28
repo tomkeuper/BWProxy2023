@@ -18,7 +18,7 @@ import static com.andrei1058.bedwars.proxy.BedWarsProxy.getParty;
 
 public class ArenaManager implements BedWars.ArenaUtil {
 
-    private final LinkedList<CachedArena> arenas = new LinkedList<>();
+    private LinkedList<CachedArena> arenas = new LinkedList<>();
     private final HashMap<String, ArenaSocketTask> socketByServer = new HashMap<>();
 
     private static ArenaManager instance = null;
@@ -42,6 +42,10 @@ public class ArenaManager implements BedWars.ArenaUtil {
     public void registerArena(@NotNull CachedArena arena) {
         if (getArena(arena.getServer(), arena.getRemoteIdentifier()) != null) return;
         arenas.add(arena);
+    }
+
+    public void resetArenaMap() {
+        arenas = new LinkedList<>();
     }
 
     public CachedArena getArena(String server, String remoteIdentifier) {

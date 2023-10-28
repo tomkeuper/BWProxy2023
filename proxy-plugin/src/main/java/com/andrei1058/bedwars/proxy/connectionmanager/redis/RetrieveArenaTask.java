@@ -27,6 +27,9 @@ public class RetrieveArenaTask implements Runnable {
         // Get the available arenas
         Map<String, Map<String, String>> arenaMap = redisConnection.getAvailableArenas();
 
+        // empty the list
+        ArenaManager.getInstance().resetArenaMap();
+
         // Process each arena data
         for (Map.Entry<String, Map<String, String>> entry : arenaMap.entrySet()) {
             Map<String, String> arenaData = entry.getValue();
