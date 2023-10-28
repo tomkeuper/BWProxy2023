@@ -16,6 +16,7 @@ public class BedWarsConfig extends PluginConfig {
 
         YamlConfiguration yml = getYml();
         yml.addDefault("language", "en");
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_DEBUG_MODE, "false");
         yml.addDefault(ConfigPath.GENERAL_CONFIG_PLACEHOLDERS_REPLACEMENTS_SERVER_IP, "yourServer.com");
         yml.addDefault("storeLink", "https://www.spigotmc.org/resources/authors/39904/");
         yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_ALLOW_PARTIES, true);
@@ -87,8 +88,10 @@ public class BedWarsConfig extends PluginConfig {
         }
         com.andrei1058.bedwars.proxy.api.Language def = LanguageManager.get().getLang(whatLang);
 
-        if (def == null) throw new IllegalStateException("Could not found default language: " + whatLang);
+        if (def == null) throw new IllegalStateException("Could not find default language: " + whatLang);
         LanguageManager.get().setDefaultLanguage(def);
+
+        BedWarsProxy.setDebug(yml.getBoolean(ConfigPath.GENERAL_CONFIGURATION_DEBUG_MODE));
 
         //remove languages if disabled
         //server language can t be disabled

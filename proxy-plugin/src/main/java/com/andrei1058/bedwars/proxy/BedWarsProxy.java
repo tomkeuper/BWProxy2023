@@ -63,7 +63,7 @@ public class BedWarsProxy extends JavaPlugin {
     private static Party party;
     private static Level levelManager;
 
-    public static boolean isPapi = false;
+    public static boolean isPapi = false, debug = true;
 
     @Override
     public void onLoad() {
@@ -254,4 +254,15 @@ public class BedWarsProxy extends JavaPlugin {
         }
         levelManager = level;
     }
+
+    public static void setDebug(boolean value) {
+        debug = value;
+    }
+
+    public static void debug(String message) {
+        if (debug) {
+            plugin.getLogger().info("DEBUG: " + message);
+        }
+    }
+
 }
