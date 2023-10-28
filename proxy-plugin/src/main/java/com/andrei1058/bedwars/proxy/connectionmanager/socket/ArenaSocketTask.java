@@ -163,7 +163,7 @@ public class ArenaSocketTask implements Runnable {
             } else {
                 try {
                     socket.close();
-                    BedWarsProxy.getPlugin().getLogger().info("Socket closed: " + socket.toString());
+                    BedWarsProxy.debug("Socket closed: " + socket.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

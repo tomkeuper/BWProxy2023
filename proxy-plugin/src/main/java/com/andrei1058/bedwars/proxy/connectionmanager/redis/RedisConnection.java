@@ -56,7 +56,7 @@ public class RedisConnection {
     public void sendMessage(String message){
         try (Jedis jedis = pool.getResource()) {
             // Publish the message to the specified channel
-            Bukkit.getLogger().info("sending message: " + message + " on channel: " + channel);
+            BedWarsProxy.debug("sending message: " + message + " on channel: " + channel);
             jedis.publish(channel, message);
         } catch (Exception e) {
             // Handle the exception
