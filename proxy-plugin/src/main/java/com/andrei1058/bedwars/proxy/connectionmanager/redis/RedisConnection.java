@@ -9,6 +9,8 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RedisConnection {
 
@@ -16,6 +18,7 @@ public class RedisConnection {
     private final JedisPool dataPool;
     private final JedisPool subscriptionPool;
     private final RedisPubSubListener redisPubSubListener;
+    private final ExecutorService listenerPool = Executors.newCachedThreadPool();
 
     public RedisConnection() {
         JedisPoolConfig config = new JedisPoolConfig();
@@ -32,6 +35,31 @@ public class RedisConnection {
 
         redisPubSubListener = new RedisPubSubListener(channel);
     }
+
+
+    public boolean connect(){
+        try {
+            listenerPool.execute(() -> {
+                BedWarsProxy.debug("Subscribing to redis channel: " + channel);
+                try (final Jedis listenerConnection = subscriptionPool.getResource()){
+                    listenerConnection.subscribe(redisPubSubListener, channel);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                /*
+                 * Since Jedis PubSub channel listener is thread-blocking,
+                 * we can shut down thread when the pub-sub listener stops
+                 * or fails.
+                 */
+                BedWarsProxy.debug("Unsubscribing from redis channel: " + channel);
+                listenerPool.shutdown();
+            });
+            return true;
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
 
     /**
      * Retrieves a map of available arenas and their associated data from the Redis database.
@@ -74,6 +102,12 @@ public class RedisConnection {
 
     public boolean isClosed(){
         return dataPool.isClosed();
+    }
+
+    public void close(){
+        BedWarsProxy.debug("Closing redis connections...");
+        redisPubSubListener.unsubscribe();
+        dataPool.close();
     }
 
 }

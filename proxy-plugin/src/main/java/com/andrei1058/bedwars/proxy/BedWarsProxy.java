@@ -95,8 +95,11 @@ public class BedWarsProxy extends JavaPlugin {
             getLogger().info("Starting Redis connection...");
             redisConnection = new RedisConnection();
             new RetrieveArenaTask(redisConnection);
-
-
+            if (!redisConnection.connect()){
+                getLogger().severe("Could not connect to redis server! Please check the redis configuration and make sure the redis server is running! Disabling the plugin...");
+                setEnabled(false);
+                return;
+            }
         } else if (messagingProtocol.equalsIgnoreCase("socket")){
             if (!ServerSocketTask.init(config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT))) {
                 getLogger().severe("Could not register port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT));
@@ -166,7 +169,11 @@ public class BedWarsProxy extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        ServerSocketTask.stopTasks();
+        if (redisConnection != null){
+            redisConnection.close();
+        } else {
+            ServerSocketTask.stopTasks();
+        }
         Bukkit.getScheduler().cancelTasks(this);
     }
 
