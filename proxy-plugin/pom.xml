@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>proxy</artifactId>
-        <groupId>com.andrei1058.bedwars</groupId>
+        <groupId>com.tomkeuper.bedwars</groupId>
         <version>1.2.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -145,7 +145,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.andrei1058.bedwars</groupId>
+            <groupId>com.tomkeuper.bedwars</groupId>
             <artifactId>proxy-api</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
@@ -232,15 +232,15 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.andrei1058.bedwars.proxy.libs</shadedPattern>
+                            <shadedPattern>com.tomkeuper.bedwars.proxy.libs</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.tomkeuper.spigot.versionsupport</pattern>
-                            <shadedPattern>com.andrei1058.bedwars.proxy.libs.version-support</shadedPattern>
+                            <shadedPattern>com.tomkeuper.bedwars.proxy.libs.version-support</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.iridium.iridiumcolorapi</pattern>
-                            <shadedPattern>com.andrei1058.bedwars.proxy.libs.color</shadedPattern>
+                            <shadedPattern>com.tomkeuper.bedwars.proxy.libs.color</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

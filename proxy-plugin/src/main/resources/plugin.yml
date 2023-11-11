@@ -1,7 +1,7 @@
-name: BedWarsProxy
+name: BWProxy2023
 version: ${gitVer}${project.version}
 description: Arena connector for BedWars2023 forked from andrei1058
-main: com.andrei1058.bedwars.proxy.BedWarsProxy
+main: com.tomkeuper.bedwars.proxy.BedWarsProxy
 author: Mr. Ceasar
 api-version: '1.13'
 softdepend:
