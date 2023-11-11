@@ -34,7 +34,6 @@ public class RedisPubSubListener extends JedisPubSub {
 
             //serverName,remoteIdentifier,arenaName,group,status,maxPlayers,currentPlayers,displayNamePerLanguage
             //OPERATION,data
-            if (!json.has("type")) return;
             switch (json.get("type").getAsString()) {
                 case "RC":
                     if (!json.has("server")) break;
