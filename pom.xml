@@ -6,7 +6,7 @@
 
     <groupId>com.tomkeuper.bedwars</groupId>
     <artifactId>proxy</artifactId>
-    <version>1.2.5</version>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>proxy-api</module>
         <module>proxy-plugin</module>
@@ -62,7 +62,33 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M2</version>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -102,12 +128,20 @@
 
     <distributionManagement>
         <repository>
-            <id>ftp-repo</id>
-            <url>ftp://andrei1058.dev/releases</url>
+            <id>bedwars-repo</id>
+            <name>BedWars Maven Repository</name>
+            <url>https://repo.tomkeuper.com/repository/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>ftp-repo</id>
-            <url>ftp://andrei1058.dev/snapshots</url>
+            <id>bedwars-repo</id>
+            <name>BedWars Snapshot Maven Repository</name>
+            <url>https://repo.tomkeuper.com/repository/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/tomkeuper/BWProxy2023.git</connection>
+        <developerConnection>scm:git:ssh://github.com/tomkeuper/BWProxy2023.git</developerConnection>
+        <url>https://github.com/tomkeuper/BWProxy2023/tree/master</url>
+    </scm>
 </project>
