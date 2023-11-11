@@ -90,6 +90,8 @@ public class RedisConnection {
      * @param message the message to be sent
      */
     public void sendMessage(String message){
+        if (message == null) return;
+        if (message.isEmpty()) return;
         try (Jedis jedis = dataPool.getResource()) {
             // Publish the message to the specified channel
             BedWarsProxy.debug("sending message: " + message + " on channel: " + channel);
