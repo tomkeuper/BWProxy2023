@@ -3,7 +3,7 @@ package com.tomkeuper.bedwars.proxy.configuration;
 public class ConfigPath {
 
     public static final String GENERAL_CONFIGURATION_DISABLED_LANGUAGES = "disabled-languages";
-    public static final String GENERAL_CONFIGURATION_DEBUG_MODE = "arena-gui";
+    public static final String GENERAL_CONFIGURATION_DEBUG_MODE = "debug";
     public static final String GENERAL_ENABLE_PARTY_CMD = "enable-party-cmd";
 
     public static final String GENERAL_CONFIGURATION_ALLOW_PARTIES = "allow-parties";
