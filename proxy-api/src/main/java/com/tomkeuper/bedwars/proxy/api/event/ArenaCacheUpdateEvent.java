@@ -8,7 +8,7 @@ public class ArenaCacheUpdateEvent extends Event {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
-    private CachedArena arena;
+    private final CachedArena arena;
 
     /**
      * Called when an arena is enabled successfully. It's called after a restart as well.

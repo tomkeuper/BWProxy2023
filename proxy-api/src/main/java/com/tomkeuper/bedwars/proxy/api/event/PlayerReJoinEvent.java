@@ -9,8 +9,8 @@ public class PlayerReJoinEvent extends Event {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
-    private Player player;
-    private CachedArena arena;
+    private final Player player;
+    private final CachedArena arena;
 
     /**
      * Called when a player rejoins an arena.

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class DynamicArenaSign extends PacketSign implements ArenaSign {
 
-    private String group;
+    private final String group;
     private CachedArena arena;
     private SignStatus status = SignStatus.NO_DATA;
 

@@ -14,7 +14,7 @@ import java.util.UUID;
 public class StatsCache {
 
     private Connection connection;
-    private String table = "stats_cache";
+    private final String table = "stats_cache";
 
     public StatsCache() {
         connect();

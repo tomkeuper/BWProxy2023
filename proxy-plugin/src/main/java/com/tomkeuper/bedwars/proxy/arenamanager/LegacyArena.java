@@ -22,9 +22,11 @@ import java.util.UUID;
 
 public class LegacyArena implements CachedArena {
 
-    private String remoteIdentifier;
+    private final String remoteIdentifier;
     private long lastUpdate;
-    private String server, group, arenaName;
+    private final String server;
+    private String group;
+    private String arenaName;
     private ArenaStatus status;
     private int maxPlayers, currentPlayers, maxInTeam;
     private boolean allowSpectate = false;

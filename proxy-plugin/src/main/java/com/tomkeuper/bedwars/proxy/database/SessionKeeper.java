@@ -2,7 +2,7 @@ package com.tomkeuper.bedwars.proxy.database;
 
 public class SessionKeeper implements Runnable {
 
-    private MySQL db;
+    private final MySQL db;
 
     public SessionKeeper(MySQL db){
         this.db = db;

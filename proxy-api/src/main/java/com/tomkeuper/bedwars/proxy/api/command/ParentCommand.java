@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class ParentCommand extends Command {
 
     //List of sub commands
-    private List<SubCommand> subCommands = new ArrayList<>();
+    private final List<SubCommand> subCommands = new ArrayList<>();
 
     /**
      * Create a new Parent Command

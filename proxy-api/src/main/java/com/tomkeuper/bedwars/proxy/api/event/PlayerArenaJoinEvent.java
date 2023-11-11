@@ -11,8 +11,8 @@ public class PlayerArenaJoinEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private boolean cancelled;
-    private Player player;
-    private CachedArena arena;
+    private final Player player;
+    private final CachedArena arena;
     private boolean spectator = false;
 
     /**

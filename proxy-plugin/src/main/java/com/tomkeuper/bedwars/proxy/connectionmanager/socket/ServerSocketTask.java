@@ -7,15 +7,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import static com.tomkeuper.bedwars.proxy.BedWarsProxy.getPlugin;
-
 public class ServerSocketTask {
 
     private static ServerSocketTask instance = null;
 
-    private ServerSocket serverSocket;
+    private final ServerSocket serverSocket;
     public static boolean compute = true;
-    private int task;
+    private final int task;
 
     private ServerSocketTask(int port) throws IOException {
         serverSocket = new ServerSocket(port);

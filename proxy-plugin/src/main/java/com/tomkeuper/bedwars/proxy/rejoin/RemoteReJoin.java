@@ -7,10 +7,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RemoteReJoin implements com.tomkeuper.bedwars.proxy.api.RemoteReJoin {
 
-    private CachedArena arena;
-    private UUID uuid;
+    private final CachedArena arena;
+    private final UUID uuid;
 
-    private static ConcurrentHashMap<UUID, com.tomkeuper.bedwars.proxy.api.RemoteReJoin> rejoinByUUID = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<UUID, com.tomkeuper.bedwars.proxy.api.RemoteReJoin> rejoinByUUID = new ConcurrentHashMap<>();
 
     public RemoteReJoin(UUID player, CachedArena arena){
         this.uuid = player;

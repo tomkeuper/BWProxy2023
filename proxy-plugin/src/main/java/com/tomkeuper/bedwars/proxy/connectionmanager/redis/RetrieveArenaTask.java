@@ -11,8 +11,6 @@ import org.bukkit.Bukkit;
 
 import java.util.Map;
 
-import static com.tomkeuper.bedwars.proxy.BedWarsProxy.getPlugin;
-
 public class RetrieveArenaTask implements Runnable {
 
     private final RedisConnection redisConnection;

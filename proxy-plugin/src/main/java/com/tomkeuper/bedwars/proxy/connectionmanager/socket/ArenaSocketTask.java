@@ -24,7 +24,7 @@ import java.util.logging.Level;
 
 public class ArenaSocketTask implements Runnable {
 
-    private Socket socket;
+    private final Socket socket;
     private Scanner scanner;
     private PrintWriter out;
 

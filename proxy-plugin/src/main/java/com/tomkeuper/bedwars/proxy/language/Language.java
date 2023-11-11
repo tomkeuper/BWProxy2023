@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 
 public class Language extends PluginConfig implements com.tomkeuper.bedwars.proxy.api.Language {
 
-    private String iso, prefix = "";
+    private final String iso;
+    private String prefix = "";
 
     public Language(Plugin plugin, String iso) {
         super(plugin, "messages_" + iso, "plugins/" + plugin.getName() + "/Languages");

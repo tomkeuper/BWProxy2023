@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public class TpRequest {
 
-    private UUID requester;
-    private String target;
+    private final UUID requester;
+    private final String target;
     private CachedArena arena = null;
-    private long millis;
+    private final long millis;
 
-    private static LinkedList<TpRequest> requests = new LinkedList<>();
+    private static final LinkedList<TpRequest> requests = new LinkedList<>();
 
     public TpRequest(UUID requester, String target){
         this.requester = requester;

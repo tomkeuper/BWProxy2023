@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 
 public class StaticArenaSign extends PacketSign implements ArenaSign {
 
-    private String group;
-    private String arena;
+    private final String group;
+    private final String arena;
     private CachedArena assignedArena;
     private SignStatus status = SignStatus.NO_DATA;
 

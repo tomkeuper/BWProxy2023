@@ -17,7 +17,7 @@ public class MainCommand extends ParentCommand {
     /**
      * Create a new Parent Command
      *
-     * @param name
+     * @param name command name.
      */
     public MainCommand(String name) {
         super(name);

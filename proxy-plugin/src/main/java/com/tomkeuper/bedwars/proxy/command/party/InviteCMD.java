@@ -63,7 +63,7 @@ public class InviteCMD extends SubCommand {
             String lastWord = args[args.length - 1];
             Player senderPlayer = s instanceof Player ? (Player)s : null;
             ArrayList<String> matchedPlayers = new ArrayList<>();
-            Iterator var8 = s.getServer().getOnlinePlayers().iterator();
+            Iterator<? extends Player> var8 = s.getServer().getOnlinePlayers().iterator();
 
             while(true) {
                 Player player;

@@ -12,9 +12,9 @@ import java.util.UUID;
 public class MySQL implements Database {
 
     private Connection connection;
-    private String host, database, user, pass;
-    private int port;
-    private boolean ssl;
+    private final String host, database, user, pass;
+    private final int port;
+    private final boolean ssl;
 
     /**
      * Create new MySQL connection.

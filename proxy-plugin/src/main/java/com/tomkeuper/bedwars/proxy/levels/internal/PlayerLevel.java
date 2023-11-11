@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class PlayerLevel {
 
-    private UUID uuid;
+    private final UUID uuid;
     private int level;
     private int nextLevelCost;
     private String levelName;
@@ -18,7 +18,7 @@ public class PlayerLevel {
     private String requiredXp;
     private String formattedCurrentXp;
 
-    private static HashMap<UUID, PlayerLevel> levelByPlayer = new HashMap<>();
+    private static final HashMap<UUID, PlayerLevel> levelByPlayer = new HashMap<>();
 
     /**
      * Cache a player level.
@@ -159,7 +159,7 @@ public class PlayerLevel {
         this.nextLevelCost = nextLevelCost;
         this.level = level;
         if (this.level < 0) this.level = 0;
-        if (this.currentXp < 0) this.currentXp = 0;
+        if (this.currentXp < 0) currentXp = 0;
         this.currentXp = currentXp;
         updateProgressBar();
     }

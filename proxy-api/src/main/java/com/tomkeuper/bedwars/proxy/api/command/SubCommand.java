@@ -7,8 +7,8 @@ import java.util.List;
 
 public abstract class SubCommand {
 
-    private String name;
-    private String permission;
+    private final String name;
+    private final String permission;
 
     /**
      * Create a new sub-command.

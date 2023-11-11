@@ -9,8 +9,8 @@ public class PlayerLangChangeEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private boolean cancelled = false;
-    private Player player;
-    private Language oldLang, newLang;
+    private final Player player;
+    private final Language oldLang, newLang;
 
     /**
      * Called when a Player changes his language.

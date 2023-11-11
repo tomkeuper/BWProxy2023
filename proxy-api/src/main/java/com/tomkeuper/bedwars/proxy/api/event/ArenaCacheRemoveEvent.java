@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 public class ArenaCacheRemoveEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
-    private CachedArena arena;
+    private final CachedArena arena;
 
     /**
      * Called when an arena is removed from the list.

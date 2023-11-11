@@ -29,7 +29,7 @@ public class ArenaGUI {
 
     //Object[0] = inventory, Object[1] = group
     private static HashMap<Player, Object[]> refresh = new HashMap<>();
-    private static YamlConfiguration yml = BedWarsProxy.config.getYml();
+    private static final YamlConfiguration yml = BedWarsProxy.config.getYml();
 
     //Object[0] = inventory, Object[1] = group
     public static void refreshInv(Player p, Object[] data) {
