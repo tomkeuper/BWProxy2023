@@ -2,6 +2,7 @@ package com.tomkeuper.bedwars.proxy.connectionmanager.redis;
 
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
+import com.tomkeuper.bedwars.proxy.api.event.RedisMessageEvent;
 import com.tomkeuper.bedwars.proxy.arenamanager.ArenaManager;
 import com.tomkeuper.bedwars.proxy.arenamanager.TpRequest;
 import com.tomkeuper.bedwars.proxy.rejoin.RemoteReJoin;
@@ -78,6 +79,13 @@ public class RedisPubSubListener extends JedisPubSub {
                     if (BedWarsProxy.getParty().isInternal()){
                         Bukkit.getLogger().info("Removing " +json.get("owner").getAsString() + " from party");
                         BedWarsProxy.getParty().removeFromParty(UUID.fromString(json.get("owner").getAsString()));
+                    }
+                    break;
+                default:
+                    if (json.has("addon_name")){
+                        Bukkit.getPluginManager().callEvent(new RedisMessageEvent(json.get("addon_data").getAsJsonObject(), json.get("addon_name").getAsString()));
+                    } else {
+                        BedWarsProxy.debug("Found unexpected data from redis in `" + BW_CHANNEL + "` with message: " + json);
                     }
                     break;
             }

@@ -1,6 +1,7 @@
 package com.tomkeuper.bedwars.proxy;
 
 import com.tomkeuper.bedwars.proxy.api.BedWars;
+import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.api.database.Database;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
 import com.tomkeuper.bedwars.proxy.api.party.Party;
@@ -84,5 +85,11 @@ public class API implements BedWars {
     @Override
     public void setRemoteDatabase(Database database) {
         BedWarsProxy.setRemoteDatabase(database);
+    }
+
+    @SuppressWarnings("unused")
+    @Override
+    public IRedisClient getRedisClient() {
+        return BedWarsProxy.getRedisConnection();
     }
 }

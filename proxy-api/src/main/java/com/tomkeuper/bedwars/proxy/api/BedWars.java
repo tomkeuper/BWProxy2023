@@ -1,5 +1,6 @@
 package com.tomkeuper.bedwars.proxy.api;
 
+import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.api.database.Database;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
 import com.tomkeuper.bedwars.proxy.api.party.Party;
@@ -194,4 +195,11 @@ public interface BedWars {
      * @return utils.
      */
     ArenaUtil getArenaUtil();
+
+    /**
+     * Get the redis communication client.
+     *
+     * @return the {@link IRedisClient} utility class
+     */
+    IRedisClient getRedisClient();
 }
