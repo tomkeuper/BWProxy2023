@@ -39,6 +39,7 @@ public class BedWarsConfig extends PluginConfig {
         yml.options().copyDefaults(true);
 
         yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_NAME, "&7[{number}✩] ");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_LEVEL_UP_REQUIREMENT, 1000);
         yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_SYMBOL, "■");
         yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_UNLOCK_COLOR, "&b");
         yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_LOCK_COLOR, "&7");

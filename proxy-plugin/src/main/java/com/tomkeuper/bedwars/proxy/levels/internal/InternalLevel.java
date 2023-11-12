@@ -1,16 +1,17 @@
 package com.tomkeuper.bedwars.proxy.levels.internal;
 
+import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
+import com.tomkeuper.bedwars.proxy.configuration.ConfigPath;
 import org.bukkit.entity.Player;
 
 public class InternalLevel implements Level {
 
     @Override
     public String getLevel(Player p) {
-        String levelname = PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName();
-        if (levelname == null) return "None";
-
-        return PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName();
+        return PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName().isEmpty() ?
+                BedWarsProxy.config.getString(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_NAME).replace("{number}", String.valueOf(1)) :
+                PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName();
     }
 
     @Override
