@@ -1,6 +1,7 @@
 package com.tomkeuper.bedwars.proxy.levels.internal;
 
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
+import com.tomkeuper.bedwars.proxy.configuration.ConfigPath;
 import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +29,7 @@ public class PlayerLevel {
         currentXp = 0;
 
         this.uuid = player;
-        this.levelName = ChatColor.translateAlternateColorCodes('&', BedWarsProxy.config.getString("levels-settings.default-name").replace("{number}", String.valueOf(level)));
+        this.levelName = ChatColor.translateAlternateColorCodes('&', BedWarsProxy.config.getString(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_NAME).replace("{number}", String.valueOf(level)));
         this.nextLevelCost = 1000;
 
         updateProgressBar();
@@ -49,9 +50,9 @@ public class PlayerLevel {
             unlocked = 0;
         }
 
-        progressBar = ChatColor.translateAlternateColorCodes('&', BedWarsProxy.config.getYml().getString("levels-settings.progress-bar-format").replace("{progress}",
-                BedWarsProxy.config.getYml().getString("levels-settings.progress-bar-unlocked-color") + String.valueOf(new char[unlocked]).replace("\0", BedWarsProxy.config.getYml().getString("levels-settings.progress-bar-symbol"))
-                        + BedWarsProxy.config.getYml().getString("levels-settings.progress-bar-locked-color") + String.valueOf(new char[locked]).replace("\0", BedWarsProxy.config.getYml().getString("levels-settings.progress-bar-symbol"))));
+        progressBar = ChatColor.translateAlternateColorCodes('&', BedWarsProxy.config.getYml().getString(ConfigPath.LEVEL_CONFIGURATION_PROGRESS_BAR_FORMAT).replace("{progress}",
+                BedWarsProxy.config.getYml().getString(ConfigPath.LEVEL_CONFIGURATION_BAR_UNLOCK_COLOR) + String.valueOf(new char[unlocked]).replace("\0", BedWarsProxy.config.getYml().getString(ConfigPath.LEVEL_CONFIGURATION_BAR_SYMBOL))
+                        + BedWarsProxy.config.getYml().getString(ConfigPath.LEVEL_CONFIGURATION_BAR_LOCK_COLOR) + String.valueOf(new char[locked]).replace("\0", BedWarsProxy.config.getYml().getString(ConfigPath.LEVEL_CONFIGURATION_BAR_SYMBOL))));
         requiredXp = nextLevelCost >= 1000 ? nextLevelCost % 1000 == 0 ? nextLevelCost / 1000 + "k" : (double) nextLevelCost / 1000 + "k" : String.valueOf(nextLevelCost);
         formattedCurrentXp = currentXp >= 1000 ? currentXp % 1000 == 0 ? currentXp / 1000 + "k" : (double) currentXp / 1000 + "k" : String.valueOf(currentXp);
     }

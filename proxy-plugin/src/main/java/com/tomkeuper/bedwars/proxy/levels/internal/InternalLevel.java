@@ -7,6 +7,9 @@ public class InternalLevel implements Level {
 
     @Override
     public String getLevel(Player p) {
+        String levelname = PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName();
+        if (levelname == null) return "None";
+
         return PlayerLevel.getLevelByPlayer(p.getUniqueId()).getLevelName();
     }
 
