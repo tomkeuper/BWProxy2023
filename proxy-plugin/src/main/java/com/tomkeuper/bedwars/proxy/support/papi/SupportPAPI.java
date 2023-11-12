@@ -22,13 +22,13 @@ public class SupportPAPI extends PlaceholderExpansion {
     @NotNull
     @Override
     public String getIdentifier() {
-        return "bw1058";
+        return "bw2023";
     }
 
     @NotNull
     @Override
     public String getAuthor() {
-        return "andrei1058";
+        return "MrCeasar";
     }
 
     @NotNull
