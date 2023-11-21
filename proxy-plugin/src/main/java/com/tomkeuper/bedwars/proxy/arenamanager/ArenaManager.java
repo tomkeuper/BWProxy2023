@@ -123,11 +123,12 @@ public class ArenaManager implements BedWars.ArenaUtil {
         getArenas().forEach(a -> {
             if (a.getArenaGroup().equalsIgnoreCase(group)) arenaList.add(a);
         });
-        arenaList.sort(getComparator());
 
         //shuffle if determined in config
         if (BedWarsProxy.config.getYml().getBoolean(ConfigPath.GENERAL_CONFIGURATION_RANDOMARENAS)){
             Collections.shuffle(arenaList);
+        } else {
+            arenaList.sort(getComparator());
         }
 
 
