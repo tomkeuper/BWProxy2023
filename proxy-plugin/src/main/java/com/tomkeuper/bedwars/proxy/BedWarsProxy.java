@@ -166,7 +166,7 @@ public class BedWarsProxy extends JavaPlugin {
             isPapi = true;
         }
 
-        Metrics m = new Metrics(this, 6036);
+        Metrics m = new Metrics(this, 20358);
         m.addCustomChart(new SimplePie("default_language", () -> LanguageManager.get().getDefaultLanguage().getIso()));
         m.addCustomChart(new SimplePie("party_adapter", () -> getParty().getClass().getName()));
         m.addCustomChart(new SimplePie("level_adapter", () -> getLevelManager().getClass().getName()));
