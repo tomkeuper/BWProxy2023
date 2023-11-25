@@ -203,7 +203,6 @@ public class LegacyArena implements CachedArena {
         map.put("target", targetPlayer == null ? "" : targetPlayer);
         map.put("arena_identifier", getRemoteIdentifier());
         JSONObject json = new JSONObject(map);
-        BedWarsProxy.getRedisConnection().sendMessage(json.toString());
         if (BedWarsProxy.getRedisConnection() == null){
             assert as != null;
             as.getOut().println(json.toJSONString());
