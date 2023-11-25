@@ -41,12 +41,22 @@ public class RedisMessageEvent extends Event {
         return AddonName;
     }
 
+    /**
+     * Bukkit stuff.
+     *
+     * @return handlers.
+     */
     @NotNull
     @Override
     public HandlerList getHandlers() {
         return HANDLERS;
     }
 
+    /**
+     * Bukkit stuff.
+     *
+     * @return handlers.
+     */
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
