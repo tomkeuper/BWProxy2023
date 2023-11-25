@@ -28,4 +28,12 @@ public class ConfigPath {
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PORT = "bungeecord-settings.redis-configuration.port";
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PASSWORD = "bungeecord-settings.redis-configuration.password";
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_CHANNEL = "bungeecord-settings.redis-configuration.channel";
+
+    // Level configuration
+    public static final String LEVEL_CONFIGURATION_PROGRESS_BAR_FORMAT = "level-settings.progress-bar-format";
+    public static final String LEVEL_CONFIGURATION_BAR_UNLOCK_COLOR = "level-settings.progress-bar-unlocked-color";
+    public static final String LEVEL_CONFIGURATION_BAR_LOCK_COLOR = "level-settings.progress-bar-locked-color";
+    public static final String LEVEL_CONFIGURATION_BAR_SYMBOL = "level-settings.progress-bar-symbol";
+    public static final String LEVEL_CONFIGURATION_DEFAULT_NAME = "level-settings.default-name";
+    public static final String LEVEL_CONFIGURATION_DEFAULT_LEVEL_UP_REQUIREMENT= "level-settings.default-level-up-requirement";
 }

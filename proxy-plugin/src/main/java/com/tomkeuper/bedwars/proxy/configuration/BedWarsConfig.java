@@ -38,11 +38,12 @@ public class BedWarsConfig extends PluginConfig {
 
         yml.options().copyDefaults(true);
 
-        yml.addDefault("levels-settings.default-name", "&7[{number}✩] ");
-        yml.addDefault("levels-settings.progress-bar-symbol", "■");
-        yml.addDefault("levels-settings.progress-bar-unlocked-color", "&b");
-        yml.addDefault("levels-settings.progress-bar-locked-color", "&7");
-        yml.addDefault("levels-settings.progress-bar-format", "&8 [{progress}&8]");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_NAME, "&7[{number}✩] ");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_LEVEL_UP_REQUIREMENT, 1000);
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_SYMBOL, "■");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_UNLOCK_COLOR, "&b");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_BAR_LOCK_COLOR, "&7");
+        yml.addDefault(ConfigPath.LEVEL_CONFIGURATION_PROGRESS_BAR_FORMAT, "&8 [{progress}&8]");
         yml.addDefault(ConfigPath.GENERAL_ENABLE_PARTY_CMD, true);
 
         yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_DISABLED_LANGUAGES, Collections.singletonList("your language iso here"));

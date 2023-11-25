@@ -22,13 +22,13 @@ public class SupportPAPI extends PlaceholderExpansion {
     @NotNull
     @Override
     public String getIdentifier() {
-        return "bw1058";
+        return "bw2023";
     }
 
     @NotNull
     @Override
     public String getAuthor() {
-        return "andrei1058";
+        return "MrCeasar";
     }
 
     @NotNull
@@ -95,7 +95,16 @@ public class SupportPAPI extends PlaceholderExpansion {
             case "player_level":
                 replay = BedWarsProxy.getLevelManager().getLevel(p);
                 break;
-                case "player_level_raw":
+            case "player_level_trim":
+                replay = BedWarsProxy.getLevelManager().getLevel(p).trim();
+                break;
+            case "player_level_strip":
+                replay = BedWarsProxy.getLevelManager().getLevel(p).replaceAll("\\[", "").replaceAll("]","");
+                break;
+            case "player_level_strip_trim":
+                replay = BedWarsProxy.getLevelManager().getLevel(p).replaceAll("\\[", "").replaceAll("]","").trim();
+                break;
+            case "player_level_raw":
                 replay = String.valueOf(BedWarsProxy.getLevelManager().getPlayerLevel(p));
                 break;
             case "player_progress":

@@ -1,5 +1,6 @@
 package com.tomkeuper.bedwars.proxy.connectionmanager.redis;
 
+import com.google.gson.JsonElement;
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
 import com.tomkeuper.bedwars.proxy.api.event.RedisMessageEvent;
@@ -81,12 +82,27 @@ public class RedisPubSubListener extends JedisPubSub {
                         BedWarsProxy.getParty().removeFromParty(UUID.fromString(json.get("owner").getAsString()));
                     }
                     break;
-                default:
-                    if (json.has("addon_name")){
-                        Bukkit.getPluginManager().callEvent(new RedisMessageEvent(json.get("addon_data").getAsJsonObject(), json.get("addon_name").getAsString()));
-                    } else {
-                        BedWarsProxy.debug("Found unexpected data from redis in `" + BW_CHANNEL + "` with message: " + json);
+                case "AM":
+                    // Addon Message
+                    if (!json.has("addon_name") || !json.has("addon_data")) {
+                        break;
                     }
+
+                    BedWarsProxy.debug("Calling RedisMessageEvent");
+                    JsonElement addonDataElement = json.get("addon_data");
+
+                    if (addonDataElement.isJsonPrimitive()) {
+                        // Assuming addon_data is a string representation of a JSON object
+                        String addonDataString = addonDataElement.getAsString();
+                        JsonObject addonDataObject = new JsonParser().parse(addonDataString).getAsJsonObject();
+                        Bukkit.getPluginManager().callEvent(new RedisMessageEvent(addonDataObject, json.get("addon_name").getAsString()));
+                    } else {
+                        // Handle other types if necessary
+                        BedWarsProxy.debug("Unexpected type for 'addon_data': " + addonDataElement.getClass().getSimpleName());
+                    }
+                    break;
+                default:
+                    BedWarsProxy.debug("Found unexpected data from redis in `" + BW_CHANNEL + "` with message: " + json);
                     break;
             }
         }
