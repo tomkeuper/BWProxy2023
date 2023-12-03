@@ -22,6 +22,7 @@ public class AcceptCMD extends SubCommand {
         if (!(s instanceof Player)) return;
         Player p = (Player) s;
         if (args.length < 1) {
+            p.sendMessage(getMsg(p, Messages.COMMAND_PARTY_ACCEPT_USAGE));
             return;
         }
         if (BedWarsProxy.getParty().hasParty(p.getUniqueId())) {
