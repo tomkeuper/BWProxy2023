@@ -1,7 +1,6 @@
 package com.tomkeuper.bedwars.proxy.arenamanager;
 
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import com.google.gson.JsonObject;
 
 import java.util.LinkedList;
@@ -26,9 +25,7 @@ public class TpRequest {
         jo.addProperty("name", target);
         jo.addProperty("requester", requester.toString());
 
-        for (ArenaSocketTask ast : ArenaManager.getInstance().getSocketByServer().values()) {
-            ast.getOut().println(jo);
-        }
+        //TODO ADD Redis support
             this.millis = System.currentTimeMillis()+3000;
     }
 

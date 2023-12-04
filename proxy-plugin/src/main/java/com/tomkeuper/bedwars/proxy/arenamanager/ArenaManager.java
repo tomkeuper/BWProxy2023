@@ -5,7 +5,6 @@ import com.tomkeuper.bedwars.proxy.api.event.ArenaCacheRemoveEvent;
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.configuration.ConfigPath;
 import com.tomkeuper.bedwars.proxy.language.LanguageManager;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -16,8 +15,6 @@ import java.util.*;
 public class ArenaManager implements BedWars.ArenaUtil {
 
     private LinkedList<CachedArena> arenas = new LinkedList<>();
-    private final HashMap<String, ArenaSocketTask> socketByServer = new HashMap<>();
-
     private static ArenaManager instance = null;
 
     private ArenaManager() {
@@ -26,14 +23,6 @@ public class ArenaManager implements BedWars.ArenaUtil {
 
     public static ArenaManager getInstance() {
         return instance == null ? new ArenaManager() : instance;
-    }
-
-    public void registerServerSocket(String server, ArenaSocketTask task) {
-        if (socketByServer.containsKey(server)) {
-            socketByServer.replace(server, task);
-            return;
-        }
-        socketByServer.put(server, task);
     }
 
     public void registerArena(@NotNull CachedArena arena) {
@@ -91,10 +80,6 @@ public class ArenaManager implements BedWars.ArenaUtil {
                 return obj instanceof CachedArena;
             }
         };
-    }
-
-    public static ArenaSocketTask getSocketByServer(String server) {
-        return getInstance().socketByServer.getOrDefault(server, null);
     }
 
     /**
@@ -180,10 +165,6 @@ public class ArenaManager implements BedWars.ArenaUtil {
     public void disableArena(CachedArena a) {
         arenas.remove(a);
         Bukkit.getPluginManager().callEvent(new ArenaCacheRemoveEvent(a));
-    }
-
-    public HashMap<String, ArenaSocketTask> getSocketByServer() {
-        return socketByServer;
     }
 
     @SuppressWarnings("unused")

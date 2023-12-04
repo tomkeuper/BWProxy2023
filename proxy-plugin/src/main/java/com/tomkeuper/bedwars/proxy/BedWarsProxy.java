@@ -18,8 +18,6 @@ import com.tomkeuper.bedwars.proxy.language.LanguageManager;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
 import com.tomkeuper.bedwars.proxy.levels.internal.InternalLevel;
 import com.tomkeuper.bedwars.proxy.levels.internal.LevelListeners;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.ServerSocketTask;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.TimeOutTask;
 import com.tomkeuper.bedwars.proxy.party.Internal;
 import com.tomkeuper.bedwars.proxy.party.PAF;
 import com.tomkeuper.bedwars.proxy.party.PAFBungeeCordParty;
@@ -95,28 +93,13 @@ public class BedWarsProxy extends JavaPlugin {
         }
         statsCache = new StatsCache();
 
-        String messagingProtocol = config.getString(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_MESSAGING_PROTOCOL);
-
-        if (messagingProtocol.equalsIgnoreCase("redis")){
-            getLogger().info("Starting Redis connection...");
-            redisConnection = new RedisConnection();
-            new RetrieveArenaTask(redisConnection);
-            if (!redisConnection.connect()){
-                getLogger().severe("Could not connect to redis server! Please check the redis configuration and make sure the redis server is running! Disabling the plugin...");
-                setEnabled(false);
-                return;
-            }
-        } else if (messagingProtocol.equalsIgnoreCase("socket")){
-            if (!ServerSocketTask.init(config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT))) {
-                getLogger().severe("Could not register port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT));
-                getLogger().severe("Please change it in config! Port already in use!");
-            }
-
-            getLogger().info("Listening for BedWars2023 arenas on port: " + config.getInt(ConfigPath.GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT));
-
-            Bukkit.getScheduler().runTaskTimer(this, new TimeOutTask(), 20L, 10L);
-        } else {
-            throw new IllegalStateException("Invalid messaging protocol provided `" + messagingProtocol + "`, possible options are `redis` or `socket`!");
+        getLogger().info("Starting Redis connection...");
+        redisConnection = new RedisConnection();
+        new RetrieveArenaTask(redisConnection);
+        if (!redisConnection.connect()){
+            getLogger().severe("Could not connect to redis server! Please check the redis configuration and make sure the redis server is running! Disabling the plugin...");
+            setEnabled(false);
+            return;
         }
 
         registerListeners(new LangListeners(), new ArenaSelectorListener(), new CacheListener());
@@ -175,11 +158,8 @@ public class BedWarsProxy extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (redisConnection != null){
-            redisConnection.close();
-        } else {
-            ServerSocketTask.stopTasks();
-        }
+        redisConnection.close();
+
         Bukkit.getScheduler().cancelTasks(this);
     }
 
