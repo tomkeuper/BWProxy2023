@@ -16,7 +16,7 @@ public class BedWarsConfig extends PluginConfig {
 
         YamlConfiguration yml = getYml();
         yml.addDefault("language", "en");
-        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_DEBUG_MODE, "false");
+        yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_DEBUG_MODE, false);
         yml.addDefault(ConfigPath.GENERAL_CONFIG_PLACEHOLDERS_REPLACEMENTS_SERVER_IP, "yourServer.com");
         yml.addDefault("storeLink", "https://www.spigotmc.org/resources/authors/39904/");
         yml.addDefault(ConfigPath.GENERAL_CONFIGURATION_ALLOW_PARTIES, true);
