@@ -57,12 +57,12 @@ public class RetrieveArenaTask implements Runnable {
                 }
                 break;
             }
-            if (arenaData.get("spectate") == null) {
+            if (arenaData.get("allow_spectate") == null) {
                 ca = new LegacyArena(arenaData.get("arena_identifier"), arenaData.get("server_name"), arenaData.get("arena_group"), arenaData.get("arena_name"),
                         ArenaStatus.valueOf(arenaData.get("arena_status")), Integer.parseInt(arenaData.get("arena_max_players")), Integer.parseInt(arenaData.get("arena_current_players")), Integer.parseInt(arenaData.get("arena_max_in_team")));
             } else {
                 ca = new LegacyArena(arenaData.get("arena_identifier"), arenaData.get("server_name"), arenaData.get("arena_group"), arenaData.get("arena_name"),
-                        ArenaStatus.valueOf(arenaData.get("arena_status")), Integer.parseInt(arenaData.get("arena_max_players")), Integer.parseInt(arenaData.get("arena_current_players")), Integer.parseInt(arenaData.get("arena_max_in_team")), Boolean.parseBoolean(arenaData.get("spectate")));
+                        ArenaStatus.valueOf(arenaData.get("arena_status")), Integer.parseInt(arenaData.get("arena_max_players")), Integer.parseInt(arenaData.get("arena_current_players")), Integer.parseInt(arenaData.get("arena_max_in_team")), Boolean.parseBoolean(arenaData.get("allow_spectate")));
             }
             CachedArena finalCa = ca;
             Bukkit.getScheduler().runTask(BedWarsProxy.getPlugin(), () -> {

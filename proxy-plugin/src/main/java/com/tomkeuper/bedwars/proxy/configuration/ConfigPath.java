@@ -22,8 +22,6 @@ public class ConfigPath {
     public static final String SIGNS_SETTINGS_STATIC_SHOW_PLAYING = "signs-settings.static-signs.show-playing";
 
     // Bungeecord connection configuration
-    public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_MESSAGING_PROTOCOL = "bungeecord-settings.messaging-protocol";
-    public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_SOCKET_PORT = "bungeecord-settings.socket-configuration.socket-port";
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_HOST = "bungeecord-settings.redis-configuration.host";
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PORT = "bungeecord-settings.redis-configuration.port";
     public static final String GENERAL_CONFIGURATION_BUNGEE_OPTION_REDIS_PASSWORD = "bungeecord-settings.redis-configuration.password";

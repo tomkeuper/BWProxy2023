@@ -66,6 +66,8 @@ public class Messages {
     public static String COMMAND_PARTY_GENERAL_DENIED_NOT_IN_PARTY = "cmd-party-not-in";
     public static String COMMAND_PARTY_LEAVE_DENIED_IS_OWNER_NEEDS_DISBAND = "cmd-party-cant-leave";
     public static String COMMAND_PARTY_LEAVE_SUCCESS = "cmd-party-leave";
+    public static String COMMAND_PARTY_LIST_MESSAGE = "cmd-party-list-message";
+    public static String COMMAND_PARTY_LIST_MEMBER_LIST_ITEM = "cmd-party-list-member-list-item";
     public static String COMMAND_PARTY_DISBAND_SUCCESS = "cmd-party-disband";
     public static String COMMAND_PARTY_REMOVE_USAGE = "cmd-party-remove-usage";
     public static String COMMAND_PARTY_REMOVE_SUCCESS = "cmd-party-remove";

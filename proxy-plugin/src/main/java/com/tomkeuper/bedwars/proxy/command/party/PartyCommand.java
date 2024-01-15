@@ -15,6 +15,7 @@ public class PartyCommand extends ParentCommand {
     public PartyCommand(String name) {
         super(name);
         addSubCommand(new InviteCMD("invite", ""));
+        addSubCommand(new ListCMD("list", ""));
         addSubCommand(new AcceptCMD("accept", ""));
         addSubCommand(new LeaveCMD("leave", ""));
         addSubCommand(new DisbandCMD("disband", ""));

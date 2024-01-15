@@ -22,6 +22,7 @@ public class AcceptCMD extends SubCommand {
         if (!(s instanceof Player)) return;
         Player p = (Player) s;
         if (args.length < 1) {
+            p.sendMessage(getMsg(p, Messages.COMMAND_PARTY_ACCEPT_USAGE));
             return;
         }
         if (BedWarsProxy.getParty().hasParty(p.getUniqueId())) {
@@ -32,12 +33,12 @@ public class AcceptCMD extends SubCommand {
             p.sendMessage(getMsg(p, Messages.COMMAND_PARTY_INVITE_DENIED_PLAYER_OFFLINE).replace("{player}", args[0]));
             return;
         }
-        if (!PartyCommand.getPartySessionRequest().containsKey(Bukkit.getPlayer(args[0]).getUniqueId())) {
+        if (!PartyCommand.getPartySessionRequest().containsKey(p.getUniqueId())) {
             p.sendMessage(getMsg(p, Messages.COMMAND_PARTY_ACCEPT_DENIED_NO_INVITE));
             return;
         }
-        if (PartyCommand.getPartySessionRequest().get(Bukkit.getPlayer(args[0]).getUniqueId()).toString().equalsIgnoreCase(p.getUniqueId().toString())) {
-            PartyCommand.getPartySessionRequest().remove(Bukkit.getPlayer(args[0]).getUniqueId());
+        if (PartyCommand.getPartySessionRequest().get(p.getUniqueId()).toString().equalsIgnoreCase(Bukkit.getPlayer(args[0]).getUniqueId().toString())) {
+            PartyCommand.getPartySessionRequest().remove(p.getUniqueId());
             if (BedWarsProxy.getParty().hasParty(Bukkit.getPlayer(args[0]).getUniqueId())) {
                 BedWarsProxy.getParty().addMember(Bukkit.getPlayer(args[0]).getUniqueId(), p);
                 Player pl;

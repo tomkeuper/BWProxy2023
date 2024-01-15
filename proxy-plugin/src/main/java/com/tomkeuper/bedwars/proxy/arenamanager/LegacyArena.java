@@ -5,7 +5,6 @@ import com.tomkeuper.bedwars.proxy.api.event.ArenaCacheUpdateEvent;
 import com.tomkeuper.bedwars.proxy.api.event.PlayerArenaJoinEvent;
 import com.tomkeuper.bedwars.proxy.api.event.PlayerReJoinEvent;
 import com.tomkeuper.bedwars.proxy.language.LanguageManager;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
@@ -166,17 +165,6 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean addSpectator(Player player, String targetPlayer) {
-        ArenaSocketTask as = null;
-        if (BedWarsProxy.getRedisConnection() == null){
-            as = ArenaManager.getSocketByServer(getServer());
-            if (as == null) {
-                this.setStatus(ArenaStatus.UNKNOWN);
-                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-                Bukkit.getPluginManager().callEvent(e);
-                return false;
-            }
-        }
-
         if (BedWarsProxy.getParty().hasParty(player.getUniqueId())) {
             player.sendMessage(LanguageManager.get().getMsg(player, Messages.COMMAND_JOIN_DENIED_NOT_PARTY_LEADER));
             return false;
@@ -204,13 +192,6 @@ public class LegacyArena implements CachedArena {
         map.put("arena_identifier", getRemoteIdentifier());
         JSONObject json = new JSONObject(map);
         BedWarsProxy.getRedisConnection().sendMessage(json.toString());
-        if (BedWarsProxy.getRedisConnection() == null){
-            assert as != null;
-            as.getOut().println(json.toJSONString());
-        } else {
-            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
-        }
-
 
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Connect");
@@ -221,17 +202,6 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean addPlayer(Player player, String partyOwnerName) {
-        ArenaSocketTask as = null;
-        if (BedWarsProxy.getRedisConnection() == null){
-            as = ArenaManager.getSocketByServer(getServer());
-            if (as == null) {
-                this.setStatus(ArenaStatus.UNKNOWN);
-                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-                Bukkit.getPluginManager().callEvent(e);
-                return false;
-            }
-        }
-
         if (BedWarsProxy.getParty().hasParty(player.getUniqueId()) && !BedWarsProxy.getParty().isOwner(player.getUniqueId()) && partyOwnerName == null) {
             player.sendMessage(LanguageManager.get().getMsg(player, Messages.COMMAND_JOIN_DENIED_NOT_PARTY_LEADER));
             return false;
@@ -280,13 +250,7 @@ public class LegacyArena implements CachedArena {
         json.addProperty("lang_iso", LanguageManager.get().getPlayerLanguage(player).getIso());
         json.addProperty("target", partyOwnerName == null ? "" : partyOwnerName);
         json.addProperty("arena_identifier", getRemoteIdentifier());
-
-        if (BedWarsProxy.getRedisConnection() == null){
-            assert as != null;
-            as.getOut().println(json);
-        } else {
-            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
-        }
+        BedWarsProxy.getRedisConnection().sendMessage(json.toString());
 
         //noinspection UnstableApiUsage
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -298,18 +262,6 @@ public class LegacyArena implements CachedArena {
 
     @Override
     public boolean reJoin(RemoteReJoin rj) {
-        ArenaSocketTask as = null;
-        if (BedWarsProxy.getRedisConnection() == null){
-            as = ArenaManager.getSocketByServer(getServer());
-            if (as == null) {
-                this.setStatus(ArenaStatus.UNKNOWN);
-                ArenaCacheUpdateEvent e = new ArenaCacheUpdateEvent(this);
-                Bukkit.getPluginManager().callEvent(e);
-                rj.destroy();
-                return false;
-            }
-        }
-
         Player player = Bukkit.getPlayer(rj.getUUID());
         if (player == null) {
             rj.destroy();
@@ -330,12 +282,8 @@ public class LegacyArena implements CachedArena {
         json.addProperty("lang_iso", BedWarsProxy.getAPI().getLanguageUtil().getPlayerLanguage(player).getIso());
         json.addProperty("target", "");
         json.addProperty("arena_identifier", getRemoteIdentifier());
-        if (BedWarsProxy.getRedisConnection() == null){
-            assert as != null;
-            as.getOut().println(json);
-        } else {
-            BedWarsProxy.getRedisConnection().sendMessage(json.toString());
-        }
+        BedWarsProxy.getRedisConnection().sendMessage(json.toString());
+
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Connect");
         out.writeUTF(getServer());

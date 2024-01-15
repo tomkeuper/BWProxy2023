@@ -45,10 +45,10 @@ public class InviteCMD extends SubCommand {
             TextComponent tc = new TextComponent(getMsg(p, Messages.COMMAND_PARTY_INVITE_SENT_TARGET_RECEIVE_MSG).replace("{player}", p.getName()));
             tc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/party accept " + p.getName()));
             Bukkit.getPlayer(args[0]).spigot().sendMessage(tc);
-            if (PartyCommand.getPartySessionRequest().containsKey(p.getUniqueId())) {
-                PartyCommand.getPartySessionRequest().replace(p.getUniqueId(), Bukkit.getPlayer(args[0]).getUniqueId());
+            if (PartyCommand.getPartySessionRequest().containsKey(Bukkit.getPlayer(args[0]).getUniqueId())) {
+                PartyCommand.getPartySessionRequest().replace(Bukkit.getPlayer(args[0]).getUniqueId(), p.getUniqueId());
             } else {
-                PartyCommand.getPartySessionRequest().put(p.getUniqueId(), Bukkit.getPlayer(args[0]).getUniqueId());
+                PartyCommand.getPartySessionRequest().put(Bukkit.getPlayer(args[0]).getUniqueId(), p.getUniqueId());
             }
         } else {
             p.sendMessage(getMsg(p, Messages.COMMAND_PARTY_INVITE_DENIED_PLAYER_OFFLINE).replace("{player}", args[0]));

@@ -1,7 +1,7 @@
 package com.tomkeuper.bedwars.proxy.arenamanager;
 
+import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
-import com.tomkeuper.bedwars.proxy.connectionmanager.socket.ArenaSocketTask;
 import com.google.gson.JsonObject;
 
 import java.util.LinkedList;
@@ -25,11 +25,9 @@ public class TpRequest {
         jo.addProperty("type", "Q");
         jo.addProperty("name", target);
         jo.addProperty("requester", requester.toString());
+        BedWarsProxy.getRedisConnection().sendMessage(jo.toString());
 
-        for (ArenaSocketTask ast : ArenaManager.getInstance().getSocketByServer().values()) {
-            ast.getOut().println(jo);
-        }
-            this.millis = System.currentTimeMillis()+3000;
+        this.millis = System.currentTimeMillis()+3000;
     }
 
     public static TpRequest getTpRequest(UUID requester){
