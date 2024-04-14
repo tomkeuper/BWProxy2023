@@ -20,7 +20,7 @@ jobs:
           java-version: '17.0.7'
           distribution: 'temurin'
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots build
+        run: mvn --batch-mode --update-snapshots package
       - name: Publish Artifact
         uses: actions/upload-artifact@v3
         with:
