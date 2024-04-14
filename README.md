@@ -1,5 +1,5 @@
 
-[![Documentation](https://i.imgur.com/7QDbrIS.png)](https://andrei1058.gitbook.io/bedwarsproxy/) [![Report a Bug](https://i.imgur.com/Z1qOYLC.png)](https://gitlab.com/andrei1058/bedwarsproxy/-/issues) [![API](https://i.imgur.com/JfMTMMc.png)](http://javadoc.andrei1058.dev/BedWarsProxy/) [![Discord](https://i.imgur.com/yBySzkU.png)](https://discord.gg/XdJfN2X)
+[![Documentation](https://i.imgur.com/7QDbrIS.png)](https://wiki.tomkeuper.com/docs/BedWarsProxy/) [![Report a Bug](https://i.imgur.com/Z1qOYLC.png)](https://github.com/tomkeuper/BWProxy2023/issues) [![API](https://i.imgur.com/JfMTMMc.png)](https://javadocs.tomkeuper.com/) [![Discord](https://i.imgur.com/yBySzkU.png)](https://discord.gg/kPaBGwhmjf)
 
 **BedWarsProxy** is a plugin for Bungeecord networks that are running BedWars1058 in BUNGEE mode. This plugin provides features for lobby servers: join gui/ signs, placeholders and more.
 
@@ -19,7 +19,7 @@
 
 **HOW TO USE**
 
-All the information you need can be found on its [documentation/ wiki](https://wiki.tomkeuper.com/docs/BedWarsProxy/).
+All the information you need can be found on its [documentation / wiki](https://wiki.tomkeuper.com/docs/BedWarsProxy/).
 
 **DOWNLOAD**
 - [Latest release](#)
