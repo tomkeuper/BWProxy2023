@@ -1,7 +1,7 @@
 
 [![Documentation](https://i.imgur.com/7QDbrIS.png)](https://wiki.tomkeuper.com/docs/BedWarsProxy/) [![Report a Bug](https://i.imgur.com/Z1qOYLC.png)](https://github.com/tomkeuper/BWProxy2023/issues) [![API](https://i.imgur.com/JfMTMMc.png)](https://javadocs.tomkeuper.com/) [![Discord](https://i.imgur.com/yBySzkU.png)](https://discord.gg/kPaBGwhmjf)
 
-**BedWarsProxy** is a plugin for Bungeecord networks that are running BedWars1058 in BUNGEE mode. This plugin provides features for lobby servers: join gui/ signs, placeholders and more.
+**BWProxy2023** is a plugin for Bungeecord networks that are running BedWars2023 in BUNGEE mode. This plugin provides features for lobby servers: join gui/ signs, placeholders and more.
 
 ![Signs](https://i.imgur.com/ggNRp4D.png?1)
 
@@ -47,4 +47,4 @@ All the information you need can be found on its [documentation / wiki](https://
 </dependency>
 ```
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8043171c9b8044f4a77b788d80a55d2f)](https://www.codacy.com/manual/andrew.dascalu/bedwarsproxy?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=andrei1058/bedwarsproxy&amp;utm_campaign=Badge_Grade) ![Servers](https://img.shields.io/bstats/servers/6036) ![Version](https://img.shields.io/spiget/version/66642) ![Chat](https://img.shields.io/discord/201345265821679617) ![Size](https://img.shields.io/spiget/download-size/66642) ![Downloads](https://img.shields.io/spiget/downloads/66642) ![Rating](https://img.shields.io/spiget/rating/66642) ![Versions](https://img.shields.io/spiget/tested-versions/66642)
+[![Discord](https://discordapp.com/api/guilds/760851292826107926/widget.png?style=shield)](https://discord.gg/kPaBGwhmjf) ![Servers](https://img.shields.io/bstats/servers/20358)
