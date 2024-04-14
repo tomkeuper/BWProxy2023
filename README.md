@@ -19,22 +19,30 @@
 
 **HOW TO USE**
 
-All the information you need can be found on its [documentation/ wiki](https://andrei1058.gitbook.io/bedwarsproxy/).
+All the information you need can be found on its [documentation/ wiki](https://wiki.tomkeuper.com/docs/BedWarsProxy/).
 
 **DOWNLOAD**
-- [Latest release](https://www.spigotmc.org/resources/66642)
-- [Development builds](https://ci.codemc.io/job/andrei1058/job/BedWarsProxy/)
+- [Latest release](#)
+- [Development builds](https://github.com/tomkeuper/BWProxy2023/releases)
 
 **MAVEN REPO**
 ```xml
 <repository>
-    <id>andrei1058-releases</id>
-    <url>https://repo.andrei1058.dev/releases/</url>
+    <id>bedwars2023-releases</id>
+    <url>https://repo.tomkeuper.com/repository/releases/</url>
 </repository>
+
+<!--Use for Snapshots only!-->
+<repository>
+    <id>bedwars2023-snapshots</id>
+    <url>https://repo.tomkeuper.com/repository/snapshots/</url>
+</repository>
+<!-- -->
+
 <dependency>
-    <groupId>com.andrei1058.bedwars</groupId>
+    <groupId>com.tomkeuper.bedwars</groupId>
     <artifactId>proxy-api</artifactId>
-    <version>VERSION HERE</version>
+    <version>{version}</version>
     <scope>provided</scope>
 </dependency>
 ```
