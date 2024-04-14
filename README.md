@@ -6,15 +6,15 @@
 ![Signs](https://i.imgur.com/ggNRp4D.png?1)
 
 **FEATURES**
-- dynamic game signs
-- static game signs
-- global arena selector
-- per group arena selector
-- arena rejoin system
-- admin /bw tp <player> command to catch cheaters
-- per player language system in sync with arenas
+- Dynamic game signs
+- Static game signs
+- Global arena selector
+- Per group arena selector
+- Arena rejoin system
+- Admin /bw tp <player> command to catch cheaters
+- Per player language system in sync with arenas
 - PAPI placeholders
-- internal party system
+- Internal party system
 - API for developers
 
 **HOW TO USE**
