@@ -1,9 +1,9 @@
 <settings>
     <servers>
         <server>
-            <id>ftp-repo</id>
-            <username>${env.FTP_USR}</username>
-            <password>${env.FTP_PASS}</password>
+            <id>bedwars-repo</id>
+            <username>${env.MAVEN_USERNAME}</username>
+            <password>${env.MAVEN_PASSWORD}</password>
         </server>
     </servers>
 </settings>
