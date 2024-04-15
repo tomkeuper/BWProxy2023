@@ -4,7 +4,6 @@ on:
   push:
     branches-ignore:
       - production
-      - development
   pull_request:
     types:
       - opened
