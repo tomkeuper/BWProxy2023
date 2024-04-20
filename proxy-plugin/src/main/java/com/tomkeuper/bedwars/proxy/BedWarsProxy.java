@@ -68,6 +68,7 @@ public class BedWarsProxy extends JavaPlugin {
     private static Level levelManager;
 
     public static boolean isPapi = false, debug = true;
+    public static int defaultRankupCost;
 
     @Override
     public void onLoad() {
@@ -100,6 +101,20 @@ public class BedWarsProxy extends JavaPlugin {
             getLogger().severe("Could not connect to redis server! Please check the redis configuration and make sure the redis server is running! Disabling the plugin...");
             setEnabled(false);
             return;
+        }
+
+        // Check stored settings
+        String retrievedValue = redisConnection.retrieveSetting("default_rankup_cost");
+        if (retrievedValue != null) {
+            try {
+                defaultRankupCost = Integer.parseInt(retrievedValue);
+            } catch (NumberFormatException e) {
+                getLogger().severe("Stored default rankup cost is not a number! Using default value of 1000.");
+                defaultRankupCost = 1000;
+            }
+        } else {
+            getLogger().severe("No stored value has been found! Using default value of 1000.");
+            defaultRankupCost = 1000;
         }
 
         registerListeners(new LangListeners(), new ArenaSelectorListener(), new CacheListener());

@@ -44,7 +44,7 @@ public class PlayerLevel {
     private void updateProgressBar() {
         double l1 = ((nextLevelCost - currentXp) / (double) (nextLevelCost)) * 10;
         if(nextLevelCost == 0){
-            nextLevelCost = BedWarsProxy.config.getInt(ConfigPath.LEVEL_CONFIGURATION_DEFAULT_LEVEL_UP_REQUIREMENT);
+            nextLevelCost = BedWarsProxy.defaultRankupCost;
         }
         int locked = (int) l1;
         int unlocked = 10 - locked;

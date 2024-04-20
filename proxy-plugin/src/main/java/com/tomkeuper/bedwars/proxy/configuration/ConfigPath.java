@@ -33,5 +33,4 @@ public class ConfigPath {
     public static final String LEVEL_CONFIGURATION_BAR_LOCK_COLOR = "level-settings.progress-bar-locked-color";
     public static final String LEVEL_CONFIGURATION_BAR_SYMBOL = "level-settings.progress-bar-symbol";
     public static final String LEVEL_CONFIGURATION_DEFAULT_NAME = "level-settings.default-name";
-    public static final String LEVEL_CONFIGURATION_DEFAULT_LEVEL_UP_REQUIREMENT= "level-settings.default-level-up-requirement";
 }
