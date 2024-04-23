@@ -1,6 +1,9 @@
 package com.tomkeuper.bedwars.proxy;
 
+import com.tomkeuper.bedwars.proxy.addon.AddonManager;
 import com.tomkeuper.bedwars.proxy.api.BedWars;
+import com.tomkeuper.bedwars.proxy.api.addon.Addon;
+import com.tomkeuper.bedwars.proxy.api.addon.IAddonManager;
 import com.tomkeuper.bedwars.proxy.api.database.Database;
 import com.tomkeuper.bedwars.proxy.api.party.Party;
 import com.tomkeuper.bedwars.proxy.arenamanager.ArenaSelectorListener;
@@ -48,6 +51,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
+import java.util.StringJoiner;
 
 public class BedWarsProxy extends JavaPlugin {
 
@@ -63,6 +67,8 @@ public class BedWarsProxy extends JavaPlugin {
     private static MaterialSupport materialAdapter;
     private static BlockSupport blockAdapter;
     private static ItemStackSupport itemAdapter;
+
+    public static IAddonManager addonManager = new AddonManager();
 
     private static Party party;
     private static Level levelManager;
@@ -169,6 +175,32 @@ public class BedWarsProxy extends JavaPlugin {
         m.addCustomChart(new SimplePie("party_adapter", () -> getParty().getClass().getSimpleName()));
         m.addCustomChart(new SimplePie("level_adapter", () -> getLevelManager().getClass().getSimpleName()));
         SignManager.init();
+
+        // Initialize the addons
+        Bukkit.getScheduler().runTaskLater(this, () -> addonManager.loadAddons(), 60L);
+
+        // Send startup message, delayed to make sure everything is loaded and registered.
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            this.getLogger().info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            this.getLogger().info("BWProxy2023 v"+ plugin.getDescription().getVersion()+" has been enabled!");
+            this.getLogger().info("");
+            this.getLogger().info("PAPI Support: " + isPapi);
+            this.getLogger().info("");
+            this.getLogger().info("Party Adapter: " + getParty().getClass().getSimpleName());
+            this.getLogger().info("Default Language: " + LanguageManager.get().getDefaultLanguage().getIso());
+            this.getLogger().info("Level Adapter: " + getLevelManager().getClass().getSimpleName());
+            this.getLogger().info("");
+
+            StringJoiner addonString = new StringJoiner(", ");
+            addonString.setEmptyValue("None");
+            for (Addon addon : api.getAddonsUtil().getAddons()){
+                addonString.add(addon.getName());
+            }
+
+            this.getLogger().info("Addon" + (addonManager.getAddons().isEmpty() || addonManager.getAddons().size() > 1 ? "s" : "") + " (" + addonManager.getAddons().size() + "): " + addonString);
+            this.getLogger().info("");
+            this.getLogger().info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        }, 80L);
     }
 
     @Override
