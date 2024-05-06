@@ -1,6 +1,7 @@
 package com.tomkeuper.bedwars.proxy;
 
 import com.tomkeuper.bedwars.proxy.api.BedWars;
+import com.tomkeuper.bedwars.proxy.api.addon.IAddonManager;
 import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.api.database.Database;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
@@ -36,6 +37,11 @@ public class API implements BedWars {
     @Override
     public Level getLevelsUtil() {
         return BedWarsProxy.getLevelManager();
+    }
+
+    @Override
+    public IAddonManager getAddonsUtil() {
+        return BedWarsProxy.addonManager;
     }
 
     /**

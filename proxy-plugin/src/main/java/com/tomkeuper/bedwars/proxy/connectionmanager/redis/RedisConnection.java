@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.configuration.ConfigPath;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -85,6 +87,25 @@ public class RedisConnection implements IRedisClient {
         }
 
         return availableArenas;
+    }
+
+    /**
+     * Retrieve the data associated with a specific identifier from the Redis database.
+     *
+     * @param redisSettingIdentifier the identifier of the setting to be checked.
+     * @return the data as a string associated with the specified identifier
+     */
+    public String retrieveSetting(String redisSettingIdentifier){
+        try (Jedis jedis = dataPool.getResource()) {
+            String key = "settings";;
+            if (jedis.exists(key)) {
+                String retrievedSetting = jedis.hget(key, redisSettingIdentifier);
+                return retrievedSetting;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

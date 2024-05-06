@@ -1,5 +1,6 @@
 package com.tomkeuper.bedwars.proxy.api;
 
+import com.tomkeuper.bedwars.proxy.api.addon.IAddonManager;
 import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.api.database.Database;
 import com.tomkeuper.bedwars.proxy.api.level.Level;
@@ -23,6 +24,11 @@ public interface BedWars {
      * @return utils
      */
     Level getLevelsUtil();
+
+    /**
+     * Get addon util
+     */
+    IAddonManager getAddonsUtil();
 
     /**
      * Change the level interface.
