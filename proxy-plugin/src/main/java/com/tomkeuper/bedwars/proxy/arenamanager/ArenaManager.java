@@ -25,7 +25,7 @@ public class ArenaManager implements BedWars.ArenaUtil {
         return instance == null ? new ArenaManager() : instance;
     }
 
-    public void registerArena(@NotNull CachedArena arena) {
+    public synchronized void registerArena(@NotNull CachedArena arena) {
         if (getArena(arena.getServer(), arena.getRemoteIdentifier()) != null) return;
         arenas.add(arena);
     }
@@ -44,7 +44,7 @@ public class ArenaManager implements BedWars.ArenaUtil {
         return null;
     }
 
-    public static List<CachedArena> getArenas() {
+    public synchronized static List<CachedArena> getArenas() {
         return Collections.unmodifiableList(getInstance().arenas);
     }
 
