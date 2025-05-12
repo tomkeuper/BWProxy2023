@@ -1,5 +1,6 @@
 package com.tomkeuper.bedwars.proxy.arenamanager;
 
+import com.saicone.rtag.RtagItem;
 import com.tomkeuper.bedwars.proxy.api.ArenaStatus;
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
 import com.tomkeuper.bedwars.proxy.configuration.SoundsConfig;
@@ -8,7 +9,6 @@ import com.tomkeuper.bedwars.proxy.api.event.ArenaCacheRemoveEvent;
 import com.tomkeuper.bedwars.proxy.api.event.ArenaCacheUpdateEvent;
 import com.tomkeuper.bedwars.proxy.language.Language;
 import com.tomkeuper.bedwars.proxy.api.Messages;
-import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,10 +30,9 @@ public class ArenaSelectorListener implements Listener {
             if (i == null) return;
             if (i.getType() == Material.AIR) return;
 
-            if (!BedWarsProxy.getItemAdapter().hasTag(i, "server")) return;
-            if (!BedWarsProxy.getItemAdapter().hasTag(i, "world_identifier")) return;
-            String server = BedWarsProxy.getItemAdapter().getTag(i, "server");
-            String identifier = BedWarsProxy.getItemAdapter().getTag(i, "world_identifier");
+            RtagItem rtagItem = new RtagItem(i);
+            String server = rtagItem.get("server");
+            String identifier = rtagItem.get("world_identifier");
 
             CachedArena a = ArenaManager.getInstance().getArena(server, identifier);
             if (a == null) return;

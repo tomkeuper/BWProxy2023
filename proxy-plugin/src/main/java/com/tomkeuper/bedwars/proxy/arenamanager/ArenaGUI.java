@@ -1,5 +1,6 @@
 package com.tomkeuper.bedwars.proxy.arenamanager;
 
+import com.saicone.rtag.RtagItem;
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
 import com.tomkeuper.bedwars.proxy.api.ArenaStatus;
 import com.tomkeuper.bedwars.proxy.api.CachedArena;
@@ -79,8 +80,8 @@ public class ArenaGUI {
                     continue;
             }
 
-            i = BedWarsProxy.getItemAdapter().createItem(yml.getString(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_MATERIAL.replace("%path%", status)),
-                    1, (byte) yml.getInt(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_DATA.replace("%path%", status)));
+            i = new ItemStack(Material.valueOf(yml.getString(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_MATERIAL.replace("%path%", status))
+            ), 1, (byte) yml.getInt(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_DATA.replace("%path%", status)));
             if (i == null) i = new ItemStack(Material.BEDROCK);
 
             if (yml.getBoolean(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_ENCHANTED.replace("%path%", status))) {
@@ -108,9 +109,12 @@ public class ArenaGUI {
                 im.setLore(lore);
                 i.setItemMeta(im);
             }
-            i = BedWarsProxy.getItemAdapter().addTag(i, "server", ca.getServer());
-            i = BedWarsProxy.getItemAdapter().addTag(i, "world_identifier", ca.getRemoteIdentifier());
-            i = BedWarsProxy.getItemAdapter().addTag(i, "cancelClick", "true");
+
+            RtagItem.edit(i, tag -> {
+                tag.set(ca.getServer(), "server");
+                tag.set(ca.getRemoteIdentifier(), "world_identifier");
+                tag.set("true", "cancelClick");
+            });
 
             ((Inventory)data[0]).setItem(slot, i);
             arenaKey++;
@@ -123,10 +127,16 @@ public class ArenaGUI {
         if (size > 54) size = 54;
         Inventory inv = Bukkit.createInventory(new SelectorHolder(), size, Language.getMsg(p, Messages.ARENA_GUI_INV_NAME));
 
-        ItemStack i = BedWarsProxy.getItemAdapter().createItem(yml.getString(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_MATERIAL.replace("%path%", "skipped-slot")),
-                1, (byte) yml.getInt(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_DATA.replace("%path%", "skipped-slot")));
-        if (i == null) i = new ItemStack(Material.BEDROCK);
-        i = BedWarsProxy.getItemAdapter().addTag(i, "cancelClick", "true");
+        ItemStack i;
+        try {
+            i = new ItemStack(Material.valueOf(yml.getString(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_MATERIAL.replace("%path%", "skipped-slot"))),
+                    1, (byte) yml.getInt(ConfigPath.GENERAL_CONFIGURATION_ARENA_SELECTOR_STATUS_DATA.replace("%path%", "skipped-slot")));
+        } catch (Exception e) {
+            i = new ItemStack(Material.BEDROCK);
+        }
+        i = RtagItem.edit(i, tag -> {
+            tag.set("true", "cancelClick");
+        });
 
         if (i.getItemMeta() != null){
             ItemMeta im = i.getItemMeta();

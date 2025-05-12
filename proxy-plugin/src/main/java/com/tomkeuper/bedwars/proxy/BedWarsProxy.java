@@ -30,8 +30,6 @@ import com.tomkeuper.bedwars.proxy.database.CacheListener;
 import com.tomkeuper.bedwars.proxy.database.MySQL;
 import com.tomkeuper.bedwars.proxy.database.NoDatabase;
 import com.tomkeuper.bedwars.proxy.database.StatsCache;
-import com.tomkeuper.spigot.versionsupport.BlockSupport;
-import com.tomkeuper.spigot.versionsupport.ItemStackSupport;
 import com.tomkeuper.spigot.versionsupport.MaterialSupport;
 import com.tomkeuper.spigot.versionsupport.SoundSupport;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -59,14 +57,13 @@ public class BedWarsProxy extends JavaPlugin {
     private static BedWars api;
     public static BedWarsConfig config;
     private static Database remoteDatabase = null;
+    public static String identifier = "BWProxy2023";
 
     private static RedisConnection redisConnection;
     private static StatsCache statsCache;
 
     private static SoundSupport soundAdapter;
     private static MaterialSupport materialAdapter;
-    private static BlockSupport blockAdapter;
-    private static ItemStackSupport itemAdapter;
 
     public static IAddonManager addonManager = new AddonManager();
 
@@ -88,8 +85,6 @@ public class BedWarsProxy extends JavaPlugin {
     public void onEnable() {
         soundAdapter = SoundSupport.SupportBuilder.load();
         materialAdapter = MaterialSupport.SupportBuilder.load();
-        blockAdapter = BlockSupport.SupportBuilder.load();
-        itemAdapter = ItemStackSupport.SupportBuilder.load();
 
         LanguageManager.init();
         config = new BedWarsConfig();
@@ -228,15 +223,6 @@ public class BedWarsProxy extends JavaPlugin {
 
     public static MaterialSupport getMaterialAdapter() {
         return materialAdapter;
-    }
-
-    @SuppressWarnings("unused")
-    public static BlockSupport getBlockAdapter() {
-        return blockAdapter;
-    }
-
-    public static ItemStackSupport getItemAdapter() {
-        return itemAdapter;
     }
 
     public static SoundSupport getSoundAdapter() {
