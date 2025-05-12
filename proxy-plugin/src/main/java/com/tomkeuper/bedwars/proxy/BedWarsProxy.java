@@ -218,10 +218,6 @@ public class BedWarsProxy extends JavaPlugin {
         return statsCache;
     }
 
-    public static MaterialSupport getMaterialAdapter() {
-        return materialAdapter;
-    }
-
     private static void registerListeners(@NotNull Listener... listeners) {
         for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, getPlugin());
