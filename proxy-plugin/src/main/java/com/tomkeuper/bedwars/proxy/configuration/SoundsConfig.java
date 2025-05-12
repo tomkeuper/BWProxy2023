@@ -1,6 +1,7 @@
 package com.tomkeuper.bedwars.proxy.configuration;
 
 import com.tomkeuper.bedwars.proxy.BedWarsProxy;
+import com.tomkeuper.bedwars.proxy.utils.SoundUtil;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -21,15 +22,15 @@ public class SoundsConfig {
     @SuppressWarnings("WeakerAccess")
     public static void saveDefaultSounds() {
         YamlConfiguration yml = sounds.getYml();
-        yml.addDefault("rejoin-denied", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
-        yml.addDefault("rejoin-allowed", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
-        yml.addDefault("spectate-denied", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
-        yml.addDefault("spectate-allowed", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
-        yml.addDefault("join-denied", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
-        yml.addDefault("join-allowed", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
-        yml.addDefault("spectator-gui-click", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
-        yml.addDefault("arena-selector-open", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("CHICKEN_EGG_POP", "ENTITY_CHICKEN_EGG", "ENTITY_CHICKEN_EGG")));
-        yml.addDefault("stats-gui-open", String.valueOf(BedWarsProxy.getSoundAdapter().getForCurrentVersion("CHICKEN_EGG_POP", "ENTITY_CHICKEN_EGG", "ENTITY_CHICKEN_EGG")));
+        yml.addDefault("rejoin-denied", String.valueOf(SoundUtil.getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
+        yml.addDefault("rejoin-allowed", String.valueOf(SoundUtil.getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
+        yml.addDefault("spectate-denied", String.valueOf(SoundUtil.getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
+        yml.addDefault("spectate-allowed", String.valueOf(SoundUtil.getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
+        yml.addDefault("join-denied", String.valueOf(SoundUtil.getForCurrentVersion("VILLAGER_NO", "ENTITY_VILLAGER_NO", "ENTITY_VILLAGER_NO")));
+        yml.addDefault("join-allowed", String.valueOf(SoundUtil.getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
+        yml.addDefault("spectator-gui-click", String.valueOf(SoundUtil.getForCurrentVersion("SLIME_WALK", "ENTITY_SLIME_JUMP", "ENTITY_SLIME_JUMP")));
+        yml.addDefault("arena-selector-open", String.valueOf(SoundUtil.getForCurrentVersion("CHICKEN_EGG_POP", "ENTITY_CHICKEN_EGG", "ENTITY_CHICKEN_EGG")));
+        yml.addDefault("stats-gui-open", String.valueOf(SoundUtil.getForCurrentVersion("CHICKEN_EGG_POP", "ENTITY_CHICKEN_EGG", "ENTITY_CHICKEN_EGG")));
         yml.options().copyDefaults(true);
         sounds.save();
     }

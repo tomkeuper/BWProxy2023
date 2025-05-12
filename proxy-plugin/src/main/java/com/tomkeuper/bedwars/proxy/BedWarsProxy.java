@@ -31,7 +31,6 @@ import com.tomkeuper.bedwars.proxy.database.MySQL;
 import com.tomkeuper.bedwars.proxy.database.NoDatabase;
 import com.tomkeuper.bedwars.proxy.database.StatsCache;
 import com.tomkeuper.spigot.versionsupport.MaterialSupport;
-import com.tomkeuper.spigot.versionsupport.SoundSupport;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -62,7 +61,6 @@ public class BedWarsProxy extends JavaPlugin {
     private static RedisConnection redisConnection;
     private static StatsCache statsCache;
 
-    private static SoundSupport soundAdapter;
     private static MaterialSupport materialAdapter;
 
     public static IAddonManager addonManager = new AddonManager();
@@ -83,7 +81,6 @@ public class BedWarsProxy extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        soundAdapter = SoundSupport.SupportBuilder.load();
         materialAdapter = MaterialSupport.SupportBuilder.load();
 
         LanguageManager.init();
@@ -223,10 +220,6 @@ public class BedWarsProxy extends JavaPlugin {
 
     public static MaterialSupport getMaterialAdapter() {
         return materialAdapter;
-    }
-
-    public static SoundSupport getSoundAdapter() {
-        return soundAdapter;
     }
 
     private static void registerListeners(@NotNull Listener... listeners) {
