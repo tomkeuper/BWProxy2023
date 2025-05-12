@@ -6,16 +6,19 @@ import com.tomkeuper.bedwars.proxy.api.communication.IRedisClient;
 import com.tomkeuper.bedwars.proxy.configuration.ConfigPath;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.material.Bed;
 import org.jetbrains.annotations.NotNull;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class RedisConnection implements IRedisClient {
 
@@ -42,21 +45,36 @@ public class RedisConnection implements IRedisClient {
     }
 
 
-    public boolean connect(){
+    public boolean connect() {
         try {
             listenerPool.execute(() -> {
                 BedWarsProxy.debug("Subscribing to redis channel: " + channel);
-                try (final Jedis listenerConnection = subscriptionPool.getResource()){
-                    listenerConnection.subscribe(redisPubSubListener, channel);
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+                while (!Thread.currentThread().isInterrupted()) {
+                    try (final Jedis listenerConnection = subscriptionPool.getResource()) {
+                        BedWarsProxy.getPlugin().getLogger().info("Successfully connected to Redis channel: " + channel);
+                        listenerConnection.subscribe(redisPubSubListener, channel);
+                    } catch (Exception e) {
+                        if (BedWarsProxy.debug) e.printStackTrace();
+                        else {
+                            if(e.getMessage() != null && e.getMessage().contains("end of stream")) {
+                                BedWarsProxy.getPlugin().getLogger().warning("Redis connection lost. Attempting to reconnect...");
+                            } else {
+                                BedWarsProxy.getPlugin().getLogger().severe("An error occurred while trying to connect to Redis: " + e.getMessage());
+                            }
+                        }
+
+                        try {
+                            // Wait before retrying to avoid rapid reconnect loops
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                            break; // Exit loop if thread is interrupted
+                        }
+                    }
                 }
-                /*
-                 * Since Jedis PubSub channel listener is thread-blocking,
-                 * we can shut down thread when the pub-sub listener stops
-                 * or fails.
-                 */
-                BedWarsProxy.debug("Unsubscribing from redis channel: " + channel);
+
+                BedWarsProxy.getPlugin().getLogger().info("Stopped listening to redis channel: " + channel);
                 listenerPool.shutdown();
             });
             return true;
