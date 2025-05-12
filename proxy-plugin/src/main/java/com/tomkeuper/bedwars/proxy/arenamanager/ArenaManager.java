@@ -38,10 +38,14 @@ public class ArenaManager implements BedWars.ArenaUtil {
 
         List<CachedArena> arenaList = getArenas();
 
+        CachedArena arena = null;
         for (CachedArena ca : arenaList) {
-            if (ca.getServer().equals(server) && ca.getRemoteIdentifier().equals(remoteIdentifier)) return ca;
+            if (ca.getServer().equals(server) && ca.getRemoteIdentifier().equals(remoteIdentifier)) {
+                arena = ca;
+                break;
+            }
         }
-        return null;
+        return arena;
     }
 
     public synchronized static List<CachedArena> getArenas() {
