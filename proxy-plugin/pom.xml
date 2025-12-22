@@ -95,22 +95,22 @@
         <dependency>
             <groupId>com.saicone.rtag</groupId>
             <artifactId>rtag</artifactId>
-            <version>1.5.6</version>
+            <version>1.5.14</version>
         </dependency>
         <dependency>
             <groupId>com.saicone.rtag</groupId>
             <artifactId>rtag-item</artifactId>
-            <version>1.5.6</version>
+            <version>1.5.14</version>
         </dependency>
         <dependency>
             <groupId>com.saicone.rtag</groupId>
             <artifactId>rtag-entity</artifactId>
-            <version>1.5.6</version>
+            <version>1.5.14</version>
         </dependency>
         <dependency>
             <groupId>com.saicone.rtag</groupId>
             <artifactId>rtag-block</artifactId>
-            <version>1.5.6</version>
+            <version>1.5.14</version>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
